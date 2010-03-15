@@ -2,7 +2,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `importa` ;
 CREATE SCHEMA IF NOT EXISTS `importa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `importa`;
 
@@ -160,12 +159,44 @@ DROP TABLE IF EXISTS `importa`.`oferta` ;
 CREATE  TABLE IF NOT EXISTS `importa`.`oferta` (
   `id` INT UNSIGNED NOT NULL ,
   `descripcion` VARCHAR(500) NOT NULL ,
-  `iditem` INT NOT NULL COMMENT 'El id del item al que se le aplica la oferta. Puede ser el id de un vehiculo, de un repuesto o de un accesorio. Dependera de la tabla tipoitem\n' ,
-  `tipoitem` INT NOT NULL COMMENT 'vehiculo, repuesto  o accesorio. Definir cada uno con un numero' ,
-  `descuento` INT NOT NULL ,
   `fecha_inicio` DATETIME NOT NULL ,
   `fecha_fin` DATETIME NULL ,
   PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `importa`.`Usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `importa`.`Usuario` ;
+
+CREATE  TABLE IF NOT EXISTS `importa`.`Usuario` (
+  `id` INT UNSIGNED NOT NULL ,
+  `nombre` VARCHAR(45) NOT NULL ,
+  `clave` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `importa`.`item_oferta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `importa`.`item_oferta` ;
+
+CREATE  TABLE IF NOT EXISTS `importa`.`item_oferta` (
+  `id` INT UNSIGNED NOT NULL ,
+  `oferta` INT UNSIGNED NOT NULL ,
+  `iditem` INT UNSIGNED NOT NULL ,
+  `tipoitem` INT UNSIGNED NOT NULL ,
+  `cantidaditem` INT UNSIGNED NOT NULL ,
+  `descuento` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_item_oferta_oferta` (`oferta` ASC) ,
+  CONSTRAINT `fk_item_oferta_oferta`
+    FOREIGN KEY (`oferta` )
+    REFERENCES `importa`.`oferta` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
