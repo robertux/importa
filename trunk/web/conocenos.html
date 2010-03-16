@@ -10,24 +10,47 @@
 <script type="text/javascript" src="js/floatbox/framebox.js"></script>									
 <link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>		
-<script type="text/javascript" src="js/easyslider.js"></script>
-<script type="text/javascript" src="js/panelgallery.js"></script>							
 <link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
+
 <script type="text/javascript">
-$(function(){
-	$('#ofertas').panelGallery();
+
+/*** 
+    Simple jQuery Slideshow Script
+    Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
+***/
+
+function slideSwitch() {
+    var $active = $('#valores IMG.active');
+
+    if ( $active.length == 0 ) $active = $('#valores IMG:last');
+
+    // use this to pull the images in the order they appear in the markup
+    var $next =  $active.next().length ? $active.next()
+        : $('#valores IMG:first');
+
+    // uncomment the 3 lines below to pull the images in random order
+    
+    // var $sibs  = $active.siblings();
+    // var rndNum = Math.floor(Math.random() * $sibs.length );
+    // var $next  = $( $sibs[ rndNum ] );
+
+
+    $active.addClass('last-active');
+
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+}
+
+$(function() {
+    setInterval( "slideSwitch()", 5000 );
 });
+
 </script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#slideWrapper").easySlider({
-			controlsShow: false,
-			auto: true,
-			speed: 800,
-			continuous: true
-		});
-	});
-</script>
+
+
 </head>
 <body>
 <div id="wrapper">
@@ -41,16 +64,16 @@ $(function(){
 				</fieldset>
 			</form>
 		</div-->
-		<br/>
-		<img id="logoImporta" src="images/logop.png"  />
+		
+		<img id="logoImporta" src="images/banner.png"/>
 		
 	</div>
 	</div>
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li class="current_page_item"><a href="home.html">Home</a></li>
-			<li><a href="conocenos.html">Con&oacute;cenos</a></li>
+			<li><a href="home.html">Home</a></li>
+			<li class="current_page_item"><a href="conocenos.html">Con&oacute;cenos</a></li>
 			<li><a href="servicios.html">Servicios</a></li>
 			<li><a href="#">Clientes</a></li>
 			<li><a href="#">Galer&iacute;as</a></li>
@@ -85,27 +108,30 @@ $(function(){
 			<br/><br/>
 			<div style="width: 537px; background: #FCEEE6; border: 1px solid #CFDEE4; float: left; margin: 20px 0 0 24px;">
 				<div style="margin: 5px 18px 5px 18px">
-				<img src="Wimg/h1.jpg" style="float:left; margin: 0 3px 10px 5px;"/>
 				<p style="color:#C66738;"><b>Nuestros Valores</b></p>
 	            <p>
-				<ul style="list-style: none;">
-					<li>1.	Integridad</li>
-					<li>2.	Calidad</li>
-					<li>3.	Profesionalismo</li>
-					<li>4.	Excelencia en el Servicio al Cliente</li>
-					<li>5.	Liderazgo</li>
-				</ul>					
+				Lo que nos caracteriza:
 				</p>
+				<br/><br/>
+				
+				<ul style="list-style:none">
+				<li>
+				<div id="valores">
+					<img src="images/integridad.jpg" alt="Integridad" class="active" />
+				    <img src="images/calidad.jpg" alt="Calidad" />
+				    <img src="images/profesionalismo.jpg" alt="Profesionalismo" />
+				    <img src="images/excelencia.jpg" alt="Excelencia en el Servicio al Cliente" />
+				    <img src="images/liderazgo.jpg" alt="Liderazgo" />
 				</div>
+				</li>
+				</ul>				
 			</div>
-								
-				</div>
-			</div>
-			
-			
-		<div style="clear: both;">&nbsp;</div>
 		</div>
-		<!-- end #content -->
+	</div>
+	</div>	
+	<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #content -->
 		<div id="sidebar">
 			<ul>
 			
