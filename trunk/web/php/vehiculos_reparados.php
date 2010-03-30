@@ -27,7 +27,7 @@
 	
 	
 	function renderVehiculos($lista){
-		$html = "";
+		$html = "<ul>";
 		
 		return $html;
 	}
