@@ -4,43 +4,21 @@
 <head>
 <meta name="keywords" content="Importa, vehiculos, tramites aduanales, El Salvador, Estados Unidos" />
 <meta name="description" content="Importa, vehiculos, tramites aduanales, El Salvador, Estados Unidos" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript" src="js/floatbox/framebox.js"></script>									
 <link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
-<script type="text/javascript" src="js/jquery.js"></script>		
-<script type="text/javascript" src="js/jqueryui.js"></script>
-<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
-
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jqueryui.js"></script>		
 
 <script type="text/javascript">
-  jQuery(document).ready(function() {
-    jQuery("#dialog1").dialog({
-      bgiframe: true, autoOpen: false, height: 100, modal: true
-    });
-  });
-  jQuery(document).ready(function() {
-    jQuery("#dialog2").dialog({
-      bgiframe: true, autoOpen: false, height: 100, modal: true
-    });
-  });
-  jQuery(document).ready(function() {
-    jQuery("#dialog3").dialog({
-      bgiframe: true, autoOpen: false, width: 600, modal: true
-    });
-  });
-  jQuery(document).ready(function() {
-    jQuery("#dialog4").dialog({
-      bgiframe: true, autoOpen: false, height: 100, modal: true
-    });
-  });
-  jQuery(document).ready(function() {
-    jQuery("#dialog5").dialog({
-      bgiframe: true, autoOpen: false, height: 100, modal: true
-    });
-  });
-</script>
+	$(function() {
+		$("#tabs").tabs();
+	});
+	</script>
+
 
 </head>
 <body>
@@ -55,9 +33,7 @@
 				</fieldset>
 			</form>
 		</div-->
-		
 		<img id="logoImporta" src="images/banner.png"/>
-		
 	</div>
 	</div>
 	<!-- end #header -->
@@ -65,8 +41,8 @@
 		<ul>
 			<li><a href="home.html">Home</a></li>
 			<li><a href="conocenos.html">Con&oacute;cenos</a></li>
-			<li class="current_page_item"><a href="servicios.html">Servicios</a></li>
-			<li><a href="clientes.html">Clientes</a></li>
+			<li><a href="servicios.html">Servicios</a></li>
+			<li class="current_page_item"><a href="clientes.html">Clientes</a></li>
 			<li><a href="#">Galer&iacute;as</a></li>
 			<li><a href="#">Cont&aacute;ctanos</a></li>
 		</ul>
@@ -77,33 +53,65 @@
 	<div id="page-bgbtm">
 		<div id="content">
 			<div class="post">
-				<h2 class="title"><strong>Tr&aacute;mites Aduanales</strong></h2>
+				<h2 class="title"><strong>Nuestros Clientes - Tr&aacute;mites Aduanales</strong></h2>
 				<div class="entry">
 				
-				<center><p>Si tienes planes de importar, exportar... IMPORTA es la soluci&oacute;n.</p></center>
+				<p>IMPORTA ofrece soluciones espec&iacute;ficas para cada tipo de cliente.</p>
+				
+				<p>Puedes hacer clic en cualquiera de nuestros tipos de clientes para conocer nuestras propuestas:</p>
+				
+				<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Hermanos Lejanos</a></li>
+		<li><a href="#tabs-2">Personas Individuales</a></li>
+		<li><a href="#tabs-3">Empresas</a></li>
+	</ul>
+	<div id="tabs-1">
+		<p>&iquest;Quieres ayudar a tu familia en El Salvador? Prov&eacute;eles de los bienes muebles necesarios para suplirles sus necesidades y brindarles comodidad. Te ayudamos con el env&iacute;o y la importaci&oacute;n de:<br><br>
+		<ul>
+		<li>Muebles</li>
+		<li> Refrigeradoras</li>
+		<li>Cocinas</li>
+		<li>Lavadoras y secadora</li>
+		<li>Televisores</li>
+		<li>Computadoras</li>
+ <br>
+ Y muchos m&aacute;s (cons&uacute;ltanos y te ayudaremos).
+</p>
+	</div>
+	<div id="tabs-2">
+		<p>		
+			<ul>
+			<li>Importaciones de veh&iacute;culos usados, tanto para importadores como para personas naturales.</li>
+			<li>Menajes de casa</li>
+			<li>Muebles y electrodom&eacute;sticos nuevos y usados.</li>
+			<li>Repuestos y accesorios de veh&iacute;culos (motores y partes en general, incluyendo los accesorios que necesitas para ponerlo como a ti te gusta)</li>
+			<li>Fardos de ropa y zapatos usados</li>
+			<li>Perfumer&iacute;a al mayoreo</li>
+			</ul>
+			<br><br>
+			Y mucho m&aacute;s. Haz clic aqu&iacute; para contactarnos.
+		</p>
+	</div>
+	<div id="tabs-3">
+		<p>
+ 			<ul>
+			<li>Tr&aacute;mites de Importaciones y Exportaciones de todo tipo de reg&iacute;menes:</li>
+			<li>Elaboraci&oacute;n de Declaraci&oacute;n de Mercanc&iacute;as y tr&aacute;mites en cualquier aduana, zona franca, frontera y almacenadoras del pa&iacute;s.</li>
+			<li>Tr&aacute;mite de permisos: junta de qu&iacute;mica, MAG, Ministerio de Salud y del Medio Ambiente.</li>
+			<li>Formalizaci&oacute;n de declaraciones de mercanc&iacute;as (DPA y Zonas Francas) </li>
+			<li> Otros m&aacute;s (cont&aacute;ctanos para asesorarte)</li>
+			</ul>
+		</p>
+	</div>
+</div>
 
-				<p>Si formas partes de una empresa ya establecida y necesitas hacer sus tr&aacute;mites, IMPORTA ofrece todo tipo de asesor&iacute; para diversos tipos de tr&aacute;mites. Haz clic en cada &iacute;tem para leer una breve descripci&oacute;n:</p>
-				
-				<!--><Clic en cada uno para conocer mas o una breve descripción de cada ítem-->
-				
-				<ul>
-				<li><a href="#" onclick="jQuery('#dialog1').dialog('open'); return false">Importaciones</a></li>
-				<li><a href="#" onclick="jQuery('#dialog2').dialog('open'); return false">Exportaciones</a></li>
-				<li><a href="#" onclick="jQuery('#dialog3').dialog('open'); return false">Tr&aacute;mites de Permisos</a></li>
-				<li><a href="#" onclick="jQuery('#dialog4').dialog('open'); return false">Asesor&iacute;a de Aduanas</a></li>
-				<li><a href="#" onclick="jQuery('#dialog5').dialog('open'); return false">Asesor&iacute;a Jur&iacute;dica</a></li>
-				</ul>
-				
-				<p>Que es lo que necesitas? Cont&aacute;ctanos haciendo clic <a style="color: #0A8911; font-weight: bold;" href="contactanos.html">aqu&iacute;</a></p>
-				
-				<br><br>
+	<br><br><br>
 				<div class="hlinks">
 					<span >|</span>
-					<a href="servicios.html">Atr&aacute;s</a>
+					<a href="clientes.html">Atr&aacute;s</a>
 					<span >|</span>
 				</div>
-				
-				<!-->En clientes se hará una página principal en donde se detallarán las necesidades de los clientes  en tramites, importaciones, repuestos y vehículos<-->
 				</div>
 	</div>	
 	<div style="clear: both;">&nbsp;</div>
@@ -177,23 +185,5 @@
 	</div>
 	<!-- end #footer -->
 </div>
-
-<div id="dialog1" style="display:none" title="Importaciones">
-	<p>Si necesitas introducir un producto al pa&iacute;s IMPORTA te da la soluci&oacute;n.</p>
-</div>
-<div id="dialog2" style="display:none" title="Exportaciones">
-	<p>Te ayudanos a que tus productos vayan hacia el exterior.</p>
-</div>
-<div id="dialog3" style="display:none" title="Permisos">
-	<p>&iquest;Problemas con tr&aacute;mites que requieran permisos? IMPORTA te brinda toda la aseser&iacute;a al respecto para contar con permisos del Gobierno y de otros entes regulatorios tales como Junta de Qu&iacute;mica, MAG, Ministerio de Salud, Ministerio de Medio Ambiente, etc.</p>
-</div>
-<div id="dialog4" style="display:none" title="Asesor&iacute; de Aduanas">
-	<p>Para evitar trabas en las aduanas del pa&iacute;s IMPORTA te ayuda.</p>
-</div>
-<div id="dialog5" style="display:none" title="Asesor&iacute; Jur&iacute;dica">
-	<p>&iquest;Dudas con lo referente al marco legal? IMPORTA te apoya seg&uacute;n sea tu caso.</p>
-</div>
-
-
 </body>
 </html>
