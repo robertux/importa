@@ -10,7 +10,17 @@
 <script type="text/javascript" src="js/floatbox/framebox.js"></script>									
 <link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>		
-<link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="js/jqueryui.js"></script>
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
+		
+
+<script type="text/javascript">
+	$(function() {
+		$("#accordion").accordion({
+			collapsible: true
+		});
+	});
+</script>
 
 
 </head>
@@ -37,7 +47,7 @@
 			<li><a href="home.html">Home</a></li>
 			<li><a href="conocenos.html">Con&oacute;cenos</a></li>
 			<li class="current_page_item"><a href="servicios.html">Servicios</a></li>
-			<li><a href="#">Clientes</a></li>
+			<li><a href="clientes.html">Clientes</a></li>
 			<li><a href="#">Galer&iacute;as</a></li>
 			<li><a href="#">Cont&aacute;ctanos</a></li>
 		</ul>
@@ -51,20 +61,34 @@
 				<h2 class="title"><strong>Importaciones</strong></h2>
 				<div class="entry">
 				
-				<p>Sab&iacute;as también que IMPORTA tambi&eacute;n pone a tu alcance la oportunidad de obtener:</p>
+				<p>Sab&iacute;as tambi&eacute;n que IMPORTA tambi&eacute;n pone a tu alcance la oportunidad de obtener:</p>
 				
 				<ul>
-				<li>Muebles y electrodomésticos (nuevos y usados)</li>
+				<li>Muebles y electrodom&eacute;sticos (nuevos y usados)</li>
 				<li>Ropa y zapatos (nuevos y usados)</li>
+				</ul>
 				
 				<!-->ESTO CON PANELES COLLAPSIBLES<-->
 				
-				<p>ROPA Y ZAPATOS</p>
-				<p>Si eres mayorista y deseas comprar pacas o fardos de ropa y zapatos usados, cont&aacute;ctanos y con gusto te atenderemos.</p>
 				
-				<p>MUEBLES Y ELECTRODOM&Eacute;STICOS</p>
+				<div  id="accordion">
+				<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a href="#">ROPA Y ZAPATOS</a></h3>
+				<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+				<p>Si eres mayorista y deseas comprar pacas o fardos de ropa y zapatos usados, cont&aacute;ctanos y con gusto te atenderemos.</p>
+				</div>
+				
+				<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a href="#">MUEBLES Y ELECTRODOM&Eacute;STICOS</a></h3>
+				<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
 				<p>Si quieres comprar muebles y electrodom&eacute;sticos, ya sea al por mayor o al detalle, cont&aacute;ctanos y con gusto te atenderemos.</p>
-
+				</div>	
+				</div>
+				
+				<br><br><br>
+				<div class="hlinks">
+					<span >|</span>
+					<a href="servicios.html">Atr&aacute;s</a>
+					<span >|</span>
+				</div>
 				</div>
 	</div>	
 	<div style="clear: both;">&nbsp;</div>
