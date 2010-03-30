@@ -3,7 +3,7 @@
 	
 	function getVehiculos($condicion){
 		$cn = getConnection();
-		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen " +
+		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen, v.precio " +
 			" FROM vehiculo v " +
 			" INNER JOIN tipo_vehiculo tv ON v.tipo  = tv.id " +
 			" INNER JOIN marca m ON v.marca = m.id " . $condicion;
@@ -27,7 +27,12 @@
 	
 	
 	function renderVehiculos($lista){
-		$html = "<ul>";
+		$html = "<ul id='listaVehiculos'>";
+		foreach($lista as $fila){
+			$html += "<li id='vehiculo" . $fila["id"] . "'>";
+			$html += "</li>";
+		}
+		$html = "</ul>";
 		
 		return $html;
 	}

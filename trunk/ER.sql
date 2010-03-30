@@ -2,7 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA importa;
+DROP SCHEMA IF EXISTS importa;
 CREATE SCHEMA IF NOT EXISTS `importa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `importa`;
 
@@ -45,6 +45,7 @@ CREATE  TABLE IF NOT EXISTS `importa`.`vehiculo` (
   `estado` INT NOT NULL COMMENT 'se manejaran los estados desde php y no se almacenaran en una tabla aparte' ,
   `url_imagen` VARCHAR(200) NULL ,
   `precio` DOUBLE UNSIGNED NOT NULL ,
+  `descripcion` TEXT NULL ,
   PRIMARY KEY (`id`, `tipo`) ,
   INDEX `fk_vehiculo_marca` (`marca` ASC) ,
   INDEX `fk_vehiculo_tipo` (`tipo` ASC) ,
