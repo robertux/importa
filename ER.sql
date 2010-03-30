@@ -2,6 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
+DROP SCHEMA importa;
 CREATE SCHEMA IF NOT EXISTS `importa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `importa`;
 
@@ -43,6 +44,7 @@ CREATE  TABLE IF NOT EXISTS `importa`.`vehiculo` (
   `marca` INT UNSIGNED NOT NULL ,
   `estado` INT NOT NULL COMMENT 'se manejaran los estados desde php y no se almacenaran en una tabla aparte' ,
   `url_imagen` VARCHAR(200) NULL ,
+  `precio` DOUBLE UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`, `tipo`) ,
   INDEX `fk_vehiculo_marca` (`marca` ASC) ,
   INDEX `fk_vehiculo_tipo` (`tipo` ASC) ,
@@ -70,6 +72,7 @@ CREATE  TABLE IF NOT EXISTS `importa`.`accesorio` (
   `marca` INT UNSIGNED NOT NULL ,
   `modelo` VARCHAR(200) NOT NULL ,
   `url_imagen` VARCHAR(200) NULL ,
+  `precio` DOUBLE UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_accesorio_marca` (`marca` ASC) ,
   CONSTRAINT `fk_accesorio_marca`
@@ -90,14 +93,14 @@ CREATE  TABLE IF NOT EXISTS `importa`.`compatible_vehiculo_acc` (
   `idvehiculo` INT UNSIGNED NOT NULL ,
   `idaccesorio` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_compatible_vehiculo` (`idvehiculo` ASC) ,
-  INDEX `fk_compatible_accesorio` (`idaccesorio` ASC) ,
-  CONSTRAINT `fk_compatible_vehiculo`
+  INDEX `fk_compatible_vehiculo_acc` (`idvehiculo` ASC) ,
+  INDEX `fk_compatible_accesorio_acc` (`idaccesorio` ASC) ,
+  CONSTRAINT `fk_compatible_vehiculo_acc`
     FOREIGN KEY (`idvehiculo` )
     REFERENCES `importa`.`vehiculo` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_compatible_accesorio`
+  CONSTRAINT `fk_compatible_accesorio_acc`
     FOREIGN KEY (`idaccesorio` )
     REFERENCES `importa`.`accesorio` (`id` )
     ON DELETE NO ACTION
@@ -116,6 +119,7 @@ CREATE  TABLE IF NOT EXISTS `importa`.`repuesto` (
   `marca` INT UNSIGNED NOT NULL ,
   `modelo` VARCHAR(200) NOT NULL ,
   `url_imagen` VARCHAR(200) NULL ,
+  `precio` DOUBLE UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_repuesto_marca` (`marca` ASC) ,
   CONSTRAINT `fk_repuesto_marca`
@@ -136,14 +140,14 @@ CREATE  TABLE IF NOT EXISTS `importa`.`compatible_vehiculo_rep` (
   `idvehiculo` INT UNSIGNED NOT NULL ,
   `idrepuesto` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_compatible_vehiculo` (`idvehiculo` ASC) ,
-  INDEX `fk_compatible_repuesto` (`idrepuesto` ASC) ,
-  CONSTRAINT `fk_compatible_vehiculo`
+  INDEX `fk_compatible_vehiculo_rep` (`idvehiculo` ASC) ,
+  INDEX `fk_compatible_repuesto_rep` (`idrepuesto` ASC) ,
+  CONSTRAINT `fk_compatible_vehiculo_rep`
     FOREIGN KEY (`idvehiculo` )
     REFERENCES `importa`.`vehiculo` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_compatible_repuesto`
+  CONSTRAINT `fk_compatible_repuesto_rep`
     FOREIGN KEY (`idrepuesto` )
     REFERENCES `importa`.`repuesto` (`id` )
     ON DELETE NO ACTION
