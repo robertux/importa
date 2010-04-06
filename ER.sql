@@ -1,14 +1,8 @@
--- MySQL Administrator dump 1.4
---
--- ------------------------------------------------------
--- Server version	5.0.51a-community-nt
-
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS importa;
+DROP SCHEMA IF EXISTS `importa` ;
 CREATE SCHEMA IF NOT EXISTS `importa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `importa`;
 
@@ -52,7 +46,7 @@ CREATE  TABLE IF NOT EXISTS `importa`.`vehiculo` (
   `url_imagen` VARCHAR(200) NULL ,
   `precio` DOUBLE UNSIGNED NOT NULL ,
   `descripcion` TEXT NULL ,
-  PRIMARY KEY (`id`, `tipo`) ,
+  PRIMARY KEY (`id`) ,
   INDEX `fk_vehiculo_marca` (`marca` ASC) ,
   INDEX `fk_vehiculo_tipo` (`tipo` ASC) ,
   CONSTRAINT `fk_vehiculo_marca`

@@ -8,12 +8,13 @@ $DEFAULT_DB = "importa";
 
 
 function getConnection($host, $port, $user, $pwd, $db){
-	$cn  = mysql_connect($host, $port, $user, $pwd);
-	mysql_select_db($db, $cn);
+	$cn  = mysql_pconnect($host, $user, $pwd) or die("fallo conexion");
+	mysql_select_db($db, $cn) or die("fallo seleccion base");
 	return $cn;
 }
 
-function getConnection(){
+function getDefaultConnection(){
+	global $DEFAULT_HOST, $DEFAULT_PORT, $DEFAULT_USER, $DEFAULT_PWD, $DEFAULT_DB;
 	return getConnection($DEFAULT_HOST, $DEFAULT_PORT, $DEFAULT_USER, $DEFAULT_PWD, $DEFAULT_DB);
 }
 
@@ -21,20 +22,17 @@ function closeConnection($cn){
 	mysql_close($cn);
 }
 
-function fetchListAssoc($cn, $sql, $autoCloseCn){
+function fetchListAssoc($sql, $cn, $autoCloseCn = true){
 	$arr = array();
-	$res = mysql_query($cn, $sql);
-	while($row = mysql_fetch_assoc($res))
+	$res = mysql_query($sql, $cn);
+	while($row = mysql_fetch_assoc($res)){
 		$arr[] = $row;
-		
+	}
+	
 	if($autoCloseCn)
 		closeConnection($cn);
 		
 	return $row;
-}
-
-function fetchListAssoc($cn, $sql){
-	fetchListAssoc($cn, $sql, true);
 }
 
 ?>
