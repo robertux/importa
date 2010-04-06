@@ -1,38 +1,76 @@
 <?php
-	require_once(acceso_datos.php);	
+	require_once("acceso_datos.php");	
 	
-	function getVehiculos($condicion){
-		$cn = getConnection();
-		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen, v.precio " +
-			" FROM vehiculo v " +
-			" INNER JOIN tipo_vehiculo tv ON v.tipo  = tv.id " +
+	$action = (isset($_POST["action"])? $_POST["action"]: (isset($_GET["action"])? $_GET["action"]: ""));
+	switch($action){
+		case "listv": listVehiculos(); break;
+		case "listm": listMarcas(); break;
+		case "listt": listTipos(); break;
+		default: 
+	}
+	
+
+	
+	
+	/******************************** Main methods ********************************/
+	
+	function listVehiculos(){
+		$lista = fetchVehiculos();
+		echo("lista: " . $lista);
+		$html = renderVehiculos($lista);
+		echo $html;
+	}
+	
+
+	
+	
+	/******************************** Fetchers ********************************/
+	
+	function fetchVehiculos($condicion=""){
+		$cn = getDefaultConnection();
+		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen, v.precio " .
+			" FROM vehiculo v " .
+			" INNER JOIN tipo_vehiculo tv ON v.tipo  = tv.id " .
 			" INNER JOIN marca m ON v.marca = m.id " . $condicion;
 		
-		$lista = fetchListAssoc($cn, $sql);
+		$lista = fetchListAssoc($sql, $cn);
 	}
 	
-	function getTipos($condicion){
-		$cn = getConnection();
+	function fetchTipos($condicion=""){
+		$cn = getDefaultConnection();
 		$sql = "SELECT t.id, t.nombre FROM tipo_vehiculo " . $condicion;
 		
-		$lista = fetchListAssoc($cn, $sql);
+		$lista = fetchListAssoc($sql, $cn);
 	}
 	
-	function getMarcas($condicion){
-		$cn = getConnection();
+	function fetchMarcas($condicion=""){
+		$cn = getDefaultConnection();
 		$sql = "SELECT m.id, m.nombre, m.url_imagen FROM marca " . $condicion;
 		
-		$lista = fetchListAssoc($cn, $sql);
+		$lista = fetchListAssoc($sql, $cn);
 	}
+	
+	
+	
+	
+	
+	
+	
+	/******************************** Renderers ********************************/
 	
 	
 	function renderVehiculos($lista){
-		$html = "<ul id='listaVehiculos'>";
+		$html = "<div id='listaVehiculos'>";
 		foreach($lista as $fila){
-			$html += "<li id='vehiculo" . $fila["id"] . "'>";
-			$html += "</li>";
+			$html .= "<h3 id='header-" . $fila["id"] . "'><a href='#'>" 
+				. $fila["marca"] . " " . $fila["modelo"] . " - " . $fila["anio"]
+				. "</a></h3>";
+				
+			$html .= "<div id='body-" . $fila["id"] . "'>";
+			$html .= "<p>" . $fila["descripcion"] . "<p>";
+			$html .= "</div>";
 		}
-		$html = "</ul>";
+		$html = "</div>";
 		
 		return $html;
 	}
