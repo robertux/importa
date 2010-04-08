@@ -1,3 +1,42 @@
+<?
+
+// Linea para que reconosca las Ñ y las tildes				
+
+	header('Content-Type: text/html; charset=ISO-8859-1');
+
+	$Path = "./";
+
+	include($Path."php/SendCorreo.php");
+	
+	$send_coreo = new SendCorreo;
+	
+	// Enviar Correo
+	if($wlock == 'WU9Q')
+	{
+		$Cuerpo_Mail_HTML = '<h3>Correo de Prueba de Solicitud de Repuestos</h3>
+
+							<p><b>Tipo de Repuesto:</b> '.$tipoRepuesto.'</p>
+							
+							<p><b>Marca:</b> '.$marcaRepuesto.'</p>
+							
+							<p><b>Modelo:</b> '.$modeloRepuesto.'</p>
+							
+							<p><b>A&ntilde;o:</b> '.$anioRepuesto.'</p>
+							
+							<p><b>Chasis:</b> '.$chasisRepuesto.'</p>
+							
+							<p><b>Chasis VIN;o:</b> '.$chasisVRepuesto.'</p>
+							
+							<p><b>Comentarios:</b> '.nl2br($comentarioRepuesto).'</p>';
+							
+
+		$destinos = 'Hugo Barrientos <hugol.barrientos@gmail.com>' . '*,*' . 'Claudia Moreno <alediejo@yahoo.com>';
+		$_StatsMails = $send_coreo->Correo($destinos,'IMPORTA... sin L&iacute;mites - Contacto',$Cuerpo_Mail_HTML,'Hugo <hugol.barrientos@gmail.com>');
+	}
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +48,19 @@
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript" src="js/floatbox/framebox.js"></script>									
 <link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
-<script type="text/javascript" src="js/jquery.js"></script>		
+<script type="text/javascript" src="js/jquery.js"></script>	
+<script type="text/javascript" src="js/jqueryui.js"></script>
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />	
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery("#correoEnviado").dialog({
+      bgiframe: true, autoOpen: false, height: 200, width:400, modal: true
+    });
+  });
+</script>
 
 
 </head>
@@ -50,23 +101,55 @@
 				<h2 class="title"><strong>Repuestos</strong></h2>
 				<div class="entry">
 				
-				<center><p>IMPORTA te ofrece toda clase de respuestos</p></center>
+				<center><p style="font-weight:bold; font-size:15px; color:#000000;">IMPORTA te ofrece toda clase de respuestos</p></center>
 				
+<?php 
+
+	if(!isset($_StatsMails['send']))
+
+	{
+
+?>
+
 				
 				<p>Solicita cualquier tipo de repuesto</p>
 
 				<p>Ingresa la informaci&oacute;n requerida y solic&iacute;tala:</p>
-				<form>
 				
-				<p>Tipo de repuesto:&nbsp;&nbsp;&nbsp;<input type="text" name="tipoRepuesto"></p>
-				<p>Marca:&nbsp;&nbsp;&nbsp;<input type="select" name="marcaRepuesto"></p>
-				<p>Modelo:&nbsp;&nbsp;&nbsp;<input type="select" name="modeloRepuesto"></p>
-				<p>A&ntilde;o:&nbsp;&nbsp;&nbsp;<input type="text" name="anioRepuesto"></p>
-				<p>Chasis:&nbsp;&nbsp;&nbsp;<input type="text" name="chasisRepuesto"></p>
-				<p>Chasis VIN:&nbsp;&nbsp;&nbsp;<input type="text" name="chasisVRepuesto"></p>
-				<p>Comentarios:&nbsp;&nbsp;&nbsp;<input type="text" name="comentarioRepuesto"></p>
-				<p><input type="button" value="Enviar" name="enviarRepuesto"></p>
+				<form action="repuestos.php?wlock=WU9Q" method="post" target="_self">
+				
+				<div class="titletForm"><b>Tipo de repuesto:</b></div>
+				<input class="txtForm" type="text" name="tipoRepuesto" id="tipoRepuesto">
+				<div class="titletForm"><b>Marca:</b></div>
+				<input class="txtForm" type="text" name="marcaRepuesto" id="marcaRepuesto">
+				<div class="titletForm"><b>Modelo:</b></div>
+				<input class="txtForm" type="text" name="modeloRepuesto" id="modeloRepuesto">
+				<div class="titletForm"><b>A&ntilde;o:</b></div>
+				<input class="txtForm" type="text" name="anioRepuesto" id="anioRepuesto">
+				<div class="titletForm"><b>Chasis:</b></div>
+				<input class="txtForm"  type="text" name="chasisRepuesto" id="chasisRepuesto">
+				<div class="titletForm"><b>Chasis VIN:</b></div>
+				<input class="txtForm" type="text" name="chasisVRepuesto" id="chasisVRepuesto">
+				<div class="titletForm"><b>Comentarios:</b></div>
+				
+				<textarea class="txtForm" name="comentarioRepuesto" id="comentarioRepuesto" cols="45" rows="5"></textarea>
+				
+				<input type="submit" value="Enviar" class="btnForm" name="enviarRepuesto">
+				
 				</form>
+				
+<?php 
+
+	}
+
+	elseif($_StatsMails['send'] == '2')
+
+	{
+		echo '<br><br><br><div align="center"><img src="images/mail_send.jpg" /></div>';
+	}
+
+?>
+
 				<br><br><br>
 				<div class="hlinks">
 					<span >|</span>
@@ -83,7 +166,8 @@
 			
 				<li>
 					<h2>Importaciones</h2>
-					<p>Para Hermanos Lejanos</p>
+					<p>Todo tipo de importaciones para Hermanos Lejanos.</p>
+					<p><a href="importaciones.html"><img src="images/hl.jpg"></a></p>
 				</li>
 				
 				<li>
@@ -146,5 +230,9 @@
 	</div>
 	<!-- end #footer -->
 </div>
+<div id="correoEnviado" style="display:none" title="Importaciones">
+	<img src="images/mail_send.jpg" />
+</div>
+
 </body>
 </html>
