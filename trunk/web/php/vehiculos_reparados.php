@@ -1,4 +1,4 @@
-<?php
+e<?php
 	require_once("acceso_datos.php");	
 	
 	$action = (isset($_POST["action"])? $_POST["action"]: (isset($_GET["action"])? $_GET["action"]: ""));
@@ -16,7 +16,6 @@
 	
 	function listVehiculos(){
 		$lista = fetchVehiculos();
-		echo("lista: " . $lista);
 		$html = renderVehiculos($lista);
 		echo $html;
 	}
@@ -34,6 +33,7 @@
 			" INNER JOIN marca m ON v.marca = m.id " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
+		return $lista;
 	}
 	
 	function fetchTipos($condicion=""){
@@ -41,6 +41,7 @@
 		$sql = "SELECT t.id, t.nombre FROM tipo_vehiculo " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
+		return $lista;
 	}
 	
 	function fetchMarcas($condicion=""){
@@ -48,6 +49,7 @@
 		$sql = "SELECT m.id, m.nombre, m.url_imagen FROM marca " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
+		return $lista;
 	}
 	
 	
@@ -59,18 +61,18 @@
 	/******************************** Renderers ********************************/
 	
 	
-	function renderVehiculos($lista){
+	function renderVehiculos($lista){ 
 		$html = "<div id='listaVehiculos'>";
-		foreach($lista as $fila){
-			$html .= "<h3 id='header-" . $fila["id"] . "'><a href='#'>" 
-				. $fila["marca"] . " " . $fila["modelo"] . " - " . $fila["anio"]
+		foreach($lista as $obj){
+			$html .= "<h3 id='header-" . $obj->id . "'><a href='#'>" 
+				. $obj->marca . " " . $obj->modelo . " - " . $obj->anio
 				. "</a></h3>";
 				
 			$html .= "<div id='body-" . $fila["id"] . "'>";
 			$html .= "<p>" . $fila["descripcion"] . "<p>";
 			$html .= "</div>";
 		}
-		$html = "</div>";
+		$html .= "</div>";
 		
 		return $html;
 	}
