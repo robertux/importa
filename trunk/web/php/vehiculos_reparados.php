@@ -1,4 +1,4 @@
-e<?php
+<?php
 	require_once("acceso_datos.php");	
 	
 	$action = (isset($_POST["action"])? $_POST["action"]: (isset($_GET["action"])? $_GET["action"]: ""));
@@ -6,7 +6,7 @@ e<?php
 		case "listv": listVehiculos(); break;
 		case "listm": listMarcas(); break;
 		case "listt": listTipos(); break;
-		default: 
+		default: echo("error");
 	}
 	
 
@@ -27,7 +27,7 @@ e<?php
 	
 	function fetchVehiculos($condicion=""){
 		$cn = getDefaultConnection();
-		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen, v.precio " .
+		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen, v.precio, v.descripcion " .
 			" FROM vehiculo v " .
 			" INNER JOIN tipo_vehiculo tv ON v.tipo  = tv.id " .
 			" INNER JOIN marca m ON v.marca = m.id " . $condicion;
@@ -64,12 +64,17 @@ e<?php
 	function renderVehiculos($lista){ 
 		$html = "<div id='listaVehiculos'>";
 		foreach($lista as $obj){
-			$html .= "<h3 id='header-" . $obj->id . "'><a href='#'>" 
-				. $obj->marca . " " . $obj->modelo . " - " . $obj->anio
+			$html .= "<h3 id='header-" . $obj->id . "' class='listav-header'><a href='#'>" 
+				. $obj->marca_desc . " " . $obj->modelo_desc . " - " . $obj->anio
 				. "</a></h3>";
 				
-			$html .= "<div id='body-" . $fila["id"] . "'>";
-			$html .= "<p>" . $fila["descripcion"] . "<p>";
+			$html .= "<div id='body-" . $obj->id . "' class='listav-body'>";
+			$html .= "<img src='images/vehiculos/" . $obj->url_imagen . "' alt='imagen' height='128' width='128'>";
+			$html .= "<p>" . $obj->descripcion . "</p>";
+			$html .= "<div id='footer-" . $obj->id . "' class='listav-footer'>";
+			$html .= "<label class='prizeLabel'>Precio: <span class='prize'>" . $obj->precio . "</span></label>";
+			$html .= "<span class='actions'><input type='button' class='edit-button' value='editar'><input type='button' class='delete-button' value='eliminar'></span>";
+			$html .= "</div>";
 			$html .= "</div>";
 		}
 		$html .= "</div>";
