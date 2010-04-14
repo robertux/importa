@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.custom.min.js"></script>
 		<script type="text/javascript" src="js/vehiculos_reparados.js"></script>
 		<script type="text/javascript" src="js/jquery.formatCurrency-1.3.0.min.js"></script>
 		
@@ -10,10 +10,40 @@
 		<link rel=StyleSheet href="css/jqueryui.css" media="screen" />
 	</head>
 	<body>
-		<h1>Vehiculos Reparados</h1>
+		<span class="titulo">Vehiculos Reparados</span>
+		<input type="button" class="add-button" value="agregar" />
 		
 		<div id="vehiculos">
 			
+		</div>
+		<div id="addEditDialog" style="display: none;">
+			<form>
+				<ul>
+					<li>
+						<label id="lblMarca">Marca:</label>
+						<input id="txtMarca" type="text" />
+					</li>
+					<li>
+						<label id="lblModelo">Modelo:</label>
+						<input id="txtModelo" type="text" />
+					</li>
+					<li>
+						<label id="lblAnio">Año:</label>
+						<select id="cmbAnio"></select>
+					</li>
+					<li>
+						<label id="lblPrecio">Precio:</label>
+						<input id="txtPrecio" type="text" />
+					</li>
+					<li>
+						<label id="lblDescripcion">Descripción:</label>
+						<textarea id="txtDescripcion" ></textarea>
+					</li>
+					<li>
+						<label id="lblImagen">Imagen:</label>
+					</li>
+				</ul>
+			</form>
 		</div>
 	</body>
 </html>

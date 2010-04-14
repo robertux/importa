@@ -20,7 +20,11 @@
 		echo $html;
 	}
 	
-
+	function listMarcas(){
+		$lista = fetchMarcas("where m.id > 0");
+		$html = renderMarcas($lista);
+		echo $html;
+	}
 	
 	
 	/******************************** Fetchers ********************************/
@@ -38,7 +42,7 @@
 	
 	function fetchTipos($condicion=""){
 		$cn = getDefaultConnection();
-		$sql = "SELECT t.id, t.nombre FROM tipo_vehiculo " . $condicion;
+		$sql = "SELECT t.id, t.nombre FROM tipo_vehiculo t " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
 		return $lista;
@@ -46,7 +50,7 @@
 	
 	function fetchMarcas($condicion=""){
 		$cn = getDefaultConnection();
-		$sql = "SELECT m.id, m.nombre, m.url_imagen FROM marca " . $condicion;
+		$sql = "SELECT m.id, m.nombre, m.url_imagen FROM marca m " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
 		return $lista;
@@ -73,7 +77,7 @@
 			$html .= "<p>" . $obj->descripcion . "</p>";
 			$html .= "<div id='footer-" . $obj->id . "' class='listav-footer'>";
 			$html .= "<label class='prizeLabel'>Precio: <span class='prize'>" . $obj->precio . "</span></label>";
-			$html .= "<span class='actions'><input type='button' class='edit-button' value='editar'><input type='button' class='delete-button' value='eliminar'></span>";
+			$html .= "<span class='actions'><input type='button' class='edit-button' value='editar' /><input type='button' class='delete-button' value='eliminar' /></span>";
 			$html .= "</div>";
 			$html .= "</div>";
 		}
@@ -89,7 +93,11 @@
 	}
 	
 	function renderMarcas($lista){
-		$html = "";
+		$nombres = array();
+		foreach($lista as $obj)
+			$nombres[] = $obj->nombre;
+			
+		$html = "[" . implode(", ", $nombres) . "]";
 		
 		return $html;
 	}
