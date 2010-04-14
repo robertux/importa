@@ -535,14 +535,27 @@ a.servicios:hover blancoSer
 	right: 0px;
 }
 
-.edit-button, .delete-button{
+.add-button { background: url(images/actions/add.png) no-repeat 3px 5px; position: relative; left: 300px; }
+.edit-button { background: url(images/actions/edit.png) no-repeat 3px 5px; }
+.delete-button { background: url(images/actions/delete.png) no-repeat 3px 5px; }
+
+.add-button, .edit-button, .delete-button{
+	background-color: #FFFFFF;
 	border: 1px solid #AAAAAA;
 	padding: 2px 5px; 
 	margin: 0px 2px;
 	color: #444444;
 	cursor: pointer;
 	text-indent: 15px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1em;
 }
 
-.edit-button { background: url(images/actions/edit.png) no-repeat 3px 5px; }
-.delete-button { background: url(images/actions/delete.png) no-repeat 3px 5px; }
+.titulo {
+	font-family: times New Roman;
+	font-size: 30px;
+	margin: 5px 30px;
+}
