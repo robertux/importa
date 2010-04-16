@@ -23,6 +23,7 @@
 	function listMarcas(){
 		$lista = fetchMarcas("where m.id > 0");
 		$html = renderMarcas($lista);
+		//header('Content-type: application/json');
 		echo $html;
 	}
 	
@@ -97,7 +98,7 @@
 		foreach($lista as $obj)
 			$nombres[] = $obj->nombre;
 			
-		$html = "[" . implode(", ", $nombres) . "]";
+		$html = implode("|", $nombres);
 		
 		return $html;
 	}

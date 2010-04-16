@@ -538,8 +538,10 @@ a.servicios:hover blancoSer
 .add-button { background: url(images/actions/add.png) no-repeat 3px 5px; position: relative; left: 300px; }
 .edit-button { background: url(images/actions/edit.png) no-repeat 3px 5px; }
 .delete-button { background: url(images/actions/delete.png) no-repeat 3px 5px; }
+.accept-button { background: url(images/actions/accept.png) no-repeat 3px 5px; }
+.cancel-button { background: url(images/actions/cancel.png) no-repeat 3px 5px; }
 
-.add-button, .edit-button, .delete-button{
+.add-button, .edit-button, .delete-button, .accept-button, .cancel-button{
 	background-color: #FFFFFF;
 	border: 1px solid #AAAAAA;
 	padding: 2px 5px; 
@@ -558,4 +560,23 @@ a.servicios:hover blancoSer
 	font-family: times New Roman;
 	font-size: 30px;
 	margin: 5px 30px;
+}
+
+#addEditDialog form ul li{
+	list-style-type: none;
+}
+
+#addEditDialog form ul li:last-child{
+	margin-top: 50px;
+}
+
+#addEditDialog form ul li label{
+	display: block;
+	float: left;
+	width: 110px;
+}
+
+.image {
+	border: 3px solid lightgrey;
+	cursor: pointer;
 }

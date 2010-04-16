@@ -1,23 +1,29 @@
 var PHP_BACKEND_SCRIPT = "php/vehiculos_reparados.php";
+var brandArray = [];
 
 $(document).ready(function(){
 	loadComboAnios();
 	loadMarcas();
 	loadVehiculos();
 	
+	$("#txtPrecio").numeric();
+	
 	$(".add-button").click(function(){
 		$("#addEditDialog").dialog({
 			modal: true,
-			height: 400,
-			width: 500,
-			title: "Agregar nuevo automóvil"
+			height: 380,
+			width: 480,
+			title: "Agregar nuevo automóvil",
+			open: function(){
+				
+			}
 		});
 	});
 	
 	$(".edit-button").click(function(){
 		$("#addEditDialog").dialog({
 			modal: true,
-			height: 400,
+			height: 650,
 			width: 500,
 			title: "Editar automóvil existente"
 		});
@@ -46,7 +52,20 @@ function loadComboAnios(){
 }
 
 function loadMarcas(){
-	$("#txtMarca").autocomplete({
-		source: PHP_BACKEND_SCRIPT + "&action=listm"
+	$.get(PHP_BACKEND_SCRIPT, {action: "listm"}, function(data){ 
+		brandArray = data.split("|");
+		$("#txtMarca").autocomplete({
+			source: brandArray
+		});
+	});
+}
+
+function closeDialog(){
+	$("#addEditDialog").dialog("close");
+}
+
+function addVehiculo(){
+	$("#frmAddEditVehiculo").ajaxForm(function(){
+		closeDialog();
 	});
 }
