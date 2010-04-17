@@ -6,6 +6,7 @@
 		case "listv": listVehiculos(); break;
 		case "listm": listMarcas(); break;
 		case "listt": listTipos(); break;
+		case "delv": delVehiculo(); break;
 		default: echo("error");
 	}
 	
@@ -25,6 +26,14 @@
 		$html = renderMarcas($lista);
 		//header('Content-type: application/json');
 		echo $html;
+	}
+	
+	function delVehiculo(){
+		$vid = $_POST["vehiculo"];
+		$cn = getDefaultConnection();
+		$sql = "DELETE FROM vehiculo WHERE id=" . $vid;
+		$rowsAffected = executeQuery($sql, $cn);
+		echo($rowsAffected>0? "OK": "FAIL");
 	}
 	
 	
@@ -57,12 +66,6 @@
 		return $lista;
 	}
 	
-	
-	
-	
-	
-	
-	
 	/******************************** Renderers ********************************/
 	
 	
@@ -78,7 +81,10 @@
 			$html .= "<p>" . $obj->descripcion . "</p>";
 			$html .= "<div id='footer-" . $obj->id . "' class='listav-footer'>";
 			$html .= "<label class='prizeLabel'>Precio: <span class='prize'>" . $obj->precio . "</span></label>";
-			$html .= "<span class='actions'><input type='button' class='edit-button' value='editar' /><input type='button' class='delete-button' value='eliminar' /></span>";
+			$html .= "<span class='actions'>";
+			$html .= "<input type='button' class='edit-button' value='editar' />";
+			$html .= "<input type='button' class='delete-button' value='eliminar' onClick='delVehiculo(" . $obj->id . ")' />";
+			$html .= "</span>";
 			$html .= "</div>";
 			$html .= "</div>";
 		}

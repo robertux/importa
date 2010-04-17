@@ -1,5 +1,6 @@
 var PHP_BACKEND_SCRIPT = "php/vehiculos_reparados.php";
 var brandArray = [];
+var editMode = false;
 
 $(document).ready(function(){
 	loadComboAnios();
@@ -9,6 +10,7 @@ $(document).ready(function(){
 	$("#txtPrecio").numeric();
 	
 	$(".add-button").click(function(){
+		editMode = false;
 		$("#addEditDialog").dialog({
 			modal: true,
 			height: 380,
@@ -21,6 +23,7 @@ $(document).ready(function(){
 	});
 	
 	$(".edit-button").click(function(){
+		editMode = true;
 		$("#addEditDialog").dialog({
 			modal: true,
 			height: 650,
@@ -65,7 +68,24 @@ function closeDialog(){
 }
 
 function addVehiculo(){
-	$("#frmAddEditVehiculo").ajaxForm(function(){
+	$("#frmAddEditVehiculo").ajaxForm(function(data){
+		if(data.indexOf("OK") >= 0){
+			loadMarcas();
+			loadVehiculos();
+		}
 		closeDialog();
 	});
+}
+
+function delVehiculo(vid){
+	if(confirm("Está seguro que desea eliminar este vehículo?")==1){
+		$.post(PHP_BACKEND_SCRIPT, 
+			{action: "delv", vehiculo: vid},
+			function(data){
+				if(data.indexOf("OK") >= 0){
+					loadMarcas();
+					loadVehiculos();
+				}
+			});
+	}
 }
