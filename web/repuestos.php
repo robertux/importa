@@ -131,11 +131,10 @@
 				<div class="titletForm"><b>Chasis VIN:</b></div>
 				<input class="txtForm" type="text" name="chasisVRepuesto" id="chasisVRepuesto">
 				<div class="titletForm"><b>Comentarios:</b></div>
-				
-				<textarea class="txtForm" name="comentarioRepuesto" id="comentarioRepuesto" cols="45" rows="5"></textarea>
-				
-				<input type="submit" value="Enviar" class="btnForm" name="enviarRepuesto">
-				
+				<textarea class="txtForm" name="comentarioRepuesto" id="comentarioRepuesto"  rows="5"></textarea>
+				<div class="titleForm">
+				<input type="submit" value="Enviar" class="accept-button" name="enviarRepuesto">
+				</div>
 				</form>
 				
 <?php 
@@ -201,20 +200,7 @@
 						
 					</ul>
 				</li>
-				
-				<li>
-				<h2>Galer&iacute;a</h2>
-				<p align="center">Haz clic <a href="galeria.html">aqu&iacute;</a> para visitar las galer&iacute;as. O clic en las en las im&aacute;genes para agrandar</p>
-				<a href="images/001.jpg" class="btnImgH" rel="slideshow" title="IMPORTA"><img src="images/h01.jpg" border="0"/>
-				</a>
-                <a href="images/003.jpg" class="btnImgH" rel="slideshow" title="IMPORTA"><img src="images/h03.jpg" border="0"/>
-				</a>
-                <a href="images/002.jpg" class="btnImgH" rel="slideshow" title="IMPORTA"><img src="images/h02.jpg" border="0"/>
-				</a>
-				<a href="images/003.jpg" class="btnImgH" rel="slideshow" title="IMPORTA"><img src="images/h03.jpg" border="0"/>
-				</a>
-                </li>
-				
+	
 			</ul>
 		</div>
 		<!-- end #sidebar -->
