@@ -1,3 +1,38 @@
+<?
+
+// Linea para que reconosca las Ñ y las tildes				
+
+	header('Content-Type: text/html; charset=ISO-8859-1');
+
+	$Path = "./";
+
+	include($Path."php/SendCorreo.php");
+	
+	$send_coreo = new SendCorreo;
+	
+	// Enviar Correo
+	if($wlock == 'WU9Q')
+	{
+		$Cuerpo_Mail_HTML = '<h3>Correo de Prueba de Solicitud de Repuestos</h3>
+
+							<p><b>Tipo de Veh&iacute;culo:</b> '.$tipoVehiculo.'</p>
+							
+							<p><b>Marca:</b> '.$marcaVehiculo.'</p>
+							
+							<p><b>Modelo:</b> '.$modeloVehiculo.'</p>
+							
+							<p><b>A&ntilde;o:</b> '.$anioVehiculo.'</p>
+							
+							<p><b>Comentarios:</b> '.nl2br($comentarios).'</p>';
+							
+
+		$destinos = 'Hugo Barrientos <hugol.barrientos@gmail.com>' . '*,*' . 'Claudia Moreno <alediejo@yahoo.com>';
+		$_StatsMails = $send_coreo->Correo($destinos,'IMPORTA... sin L&iacute;mites - Contacto',$Cuerpo_Mail_HTML,'Hugo <hugol.barrientos@gmail.com>');
+	}
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,8 +42,20 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" src="js/jquery.js"></script>		
+<script type="text/javascript" src="js/jquery.js"></script>	
+<script type="text/javascript" src="js/jqueryui.js"></script>
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />	
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery("#correoEnviado").dialog({
+      bgiframe: true, autoOpen: false, height: 200, width:400, modal: true
+    });
+  });
+</script>
+
 
 </head>
 <body>
@@ -45,39 +92,89 @@
 	<div id="page-bgbtm">
 		<div id="content">
 			<div class="post">
-				<h2 class="title"><strong>Servicios</strong></h2>
+				<h2 class="title"><strong>Repuestos</strong></h2>
 				<div class="entry">
 				
+				<center><p style="font-weight:bold; font-size:15px; color:#000000;">IMPORTA te ofrece toda clase de respuestos</p></center>
 				
-				<center><p style="font-weight:bold; font-size:15px; color:#000000;">IMPORTA te ofrece los siguientes servicios:</p></center>
-				<br/><br/>
+<?php 
+
+	if(!isset($_StatsMails['send']))
+
+	{
+
+?>
+
 				
-				<!--table border="0" cellpadding="2">
-				<tr >
-				<td><a class="servicios" href="vehiculos.html"><img src="images/servicio1.png"><div class="blancoSer">Veh&iacute;culos Usados</div></a></td>
-				<td><a class="servicios" href="repuestos.html"><img src="images/servicio2.png"><div class="blancoSer">Repuestos</div></a></td>
-				</tr>
-				</table>
-				<br/><br/>
-				<table border="0" cellpadding="2">
-				<tr>
-				<td><a class="servicios" href="importaciones.html"><img src="images/servicio3.png"><div class="blancoSer">Importaciones</div></a></td>
-				<td><a class="servicios" href="tramites.html"><img src="images/servicio4.png"><div class="blancoSer">Tr&aacute;mites Aduanales</div></a></td>
-				</tr>
+				<p>Solicita cualquier tipo de repuesto ingresando la informaci&oacute;n requerida y solic&iacute;tala:</p>
 				
-				</table-->
+				<form action="solicitudSubasta.php?wlock=WU9Q" method="post" target="_self">
 				
-				<center>
-				<a class="servicios" href="vehiculos.html"><img src="images/servicio1.png"><div class="blancoSer">Veh&iacute;culos Usados</div></a> <br/><br/><br/>
+				<div class="titletForm"><b>Tipo de veh&iacute;culo:</b></div>
+				<select class="txtForm" type="text" name="tipoVehiculo" id="tipoVehiculo">
+				<option>Autom&oacute;vil</option>
+				<option>Pickup</option>
+				<option>Cami&oacute;n</option>
+				<option>Microbus</option>
+				<option>Autobus</option>
+				<option>Motocicleta</option>
+				<option>Rastras</option>
+				<option>Otros</option>
+				</select>
 				
-				<a class="servicios" href="repuestos.php"><img src="images/servicio2.png"><div class="blancoSer">Repuestos</div></a> <br/><br/><br/>
+				<div class="titletForm"><b>Marca:</b></div>
+				<select class="txtForm" type="text" name="marcaVehiculo" id="marcaVehiculo">
+				<option></option>
+				<option></option>
+				</select>
 				
-				<a class="servicios" href="importaciones.html"><img src="images/servicio3.png"><div class="blancoSer">Importaciones</div></a> <br/><br/><br/>
+				<div class="titletForm"><b>Modelo:</b></div>
+				<select class="txtForm" type="text" name="modeloVehiculo" id="modeloVehiculo">
+				<option></option>
+				<option></option>
+				</select>
 				
-				<a class="servicios" href="tramites.html"><img src="images/servicio4.png"><div class="blancoSer">Tr&aacute;mites Aduanales</div></a>
+				<div class="titletForm"><b>A&ntilde;o:</b></div>
+				<select class="txtForm" type="text" name="anioVehiculo" id="anioVehiculo">
+				<?php
+				$anio=date('Y');
+				for ($i = 1975; $i <= $anio; $i++) {
+					echo '<option>'.$i.'</option>';
+				}
+				?>
+				</select>
 				
-				</center>
+				<div class="titletForm"><b>Comentarios:</b></div>
+				<textarea name="comentarios" id="comentarios" class="txtFormC" cols="50" rows="8"></textarea>
 				
+				<div class="txtFormC">
+				<input type="submit" value="Enviar" class="accept-button" name="enviarVehiculo">
+				</div>
+				
+				</form>
+				
+<?php 
+
+	}
+
+	elseif($_StatsMails['send'] == '2')
+
+	{
+		echo '<br><br><br><div align="center"><img src="images/mail_send.jpg" /></div>';
+	}
+
+?>
+
+				<br>
+				<div class="hlinks">
+					<span >|</span>
+					<a href="subasta.html">Atr&aacute;s</a>
+					<span >|</span>
+					<a href="vehiculos.html">Veh&iacute;culos</a>
+					<span >|</span>
+					<a href="servicios.html">Servicios</a>
+					<span >|</span>
+				</div>
 				</div>
 	</div>	
 	<div style="clear: both;">&nbsp;</div>
@@ -85,10 +182,6 @@
 	<!-- end #content -->
 		<div id="sidebar">
 			<ul>
-				<li>
-					<h2>Subastas</h2>
-					<a href="subasta.html"><img src="images/sub.gif"></a>
-				</li>
 			
 				<li>
 					<h2>Importaciones</h2>
@@ -124,7 +217,7 @@
 						<li><img src="images/icons/star.png"/>&nbsp;&nbsp;&nbsp;<a href="contactanos.php">Contacto</a></li>
 					</ul>
 				</li>
-				
+	
 			</ul>
 		</div>
 		<!-- end #sidebar -->
@@ -140,5 +233,9 @@
 	</div>
 	<!-- end #footer -->
 </div>
+<div id="correoEnviado" style="display:none" title="Importaciones">
+	<img src="images/mail_send.jpg" />
+</div>
+
 </body>
 </html>

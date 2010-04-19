@@ -1,3 +1,37 @@
+<?
+
+// Linea para que reconosca las Ñ y las tildes				
+
+	header('Content-Type: text/html; charset=ISO-8859-1');
+
+	$Path = "./";
+
+	include($Path."php/SendCorreo.php");
+	
+	$send_coreo = new SendCorreo;
+	
+	// Enviar Correo
+	if($wlock == 'WU9Q')
+	{
+		$Cuerpo_Mail_HTML = '<h3>Correo de Prueba de Solicitud de Repuestos</h3>
+
+							<p><b>Nombre Cliente:</b> '.$formNombre.'</p>
+							
+							<p><b>Direcci&oacute;n:</b> '.$formDireccion.'</p>
+							
+							<p><b>Tel&eacute;fono:</b> '.$formTelefono.'</p>
+							
+							<p><b>Tipo de Solicitud:</b> '.$formSolicitud.'</p>
+						
+							<p><b>Descripci&oacute;n:</b> '.nl2br($formDescipcion).'</p>';
+							
+
+		$destinos = 'Hugo Barrientos <hugol.barrientos@gmail.com>' . '*,*' . 'Claudia Moreno <alediejo@yahoo.com>';
+		$_StatsMails = $send_coreo->Correo($destinos,'IMPORTA... sin L&iacute;mites - Contacto',$Cuerpo_Mail_HTML,'Hugo <hugol.barrientos@gmail.com>');
+	}
+
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,41 +45,11 @@
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />		
 
 <script type="text/javascript">
-
-/*** 
-    Simple jQuery Slideshow Script
-    Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
-***/
-
-function slideSwitch() {
-    var $active = $('#valores IMG.active');
-
-    if ( $active.length == 0 ) $active = $('#valores IMG:last');
-
-    // use this to pull the images in the order they appear in the markup
-    var $next =  $active.next().length ? $active.next()
-        : $('#valores IMG:first');
-
-    // uncomment the 3 lines below to pull the images in random order
-    
-    // var $sibs  = $active.siblings();
-    // var rndNum = Math.floor(Math.random() * $sibs.length );
-    // var $next  = $( $sibs[ rndNum ] );
-
-
-    $active.addClass('last-active');
-
-    $next.css({opacity: 0.0})
-        .addClass('active')
-        .animate({opacity: 1.0}, 1000, function() {
-            $active.removeClass('active last-active');
-        });
-}
-
-$(function() {
-    setInterval( "slideSwitch()", 5000 );
-});
-
+  jQuery(document).ready(function() {
+    jQuery("#correoEnviado").dialog({
+      bgiframe: true, autoOpen: false, height: 200, width:400, modal: true
+    });
+  });
 </script>
 
 
@@ -71,11 +75,11 @@ $(function() {
 	<div id="menu">
 		<ul>
 			<li><a href="home.html">Home</a></li>
-			<li class="current_page_item"><a href="conocenos.html">Con&oacute;cenos</a></li>
+			<li><a href="conocenos.html">Con&oacute;cenos</a></li>
 			<li><a href="servicios.html">Servicios</a></li>
 			<li><a href="clientes.html">Clientes</a></li>
 			<li><a href="vehiculos_reparados.html">Autolote</a></li>
-			<li><a href="contactanos.php">Cont&aacute;ctanos</a></li>
+			<li class="current_page_item"><a href="contactanos.php">Cont&aacute;ctanos</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -84,62 +88,85 @@ $(function() {
 	<div id="page-bgbtm">
 		<div id="content">
 			<div class="post">
-				<h2 class="title"><strong>Con&oacute;cenos</strong></h2>
+				<h2 class="title"><strong>Cont&aacute;ctanos</strong></h2>
 				<div class="entry">
-				<div style="width: 537px; background: #FCEEE6; border: 1px solid #CFDEE4; float: left; margin: 20px 0 0 24px;">
-				
-				<div style="margin: 5px 18px 5px 18px">
-				
-				<img src="images/mision.jpg" style="float:left; margin: 0 18px 10px 3px;"/>
-	            <p style="color:#C66738;"><b>Misi&oacute;n</b></p>
-				<p>Ser un aliado estrat&eacute;gico que satisfaga las necesidades de <strong>personas</strong> o <strong>Negocios</strong> en cuanto a todo lo relacionado con importaciones de mercanc&iacute;as, ofreciendo servicios <strong>competitivos</strong> de <strong>calidad</strong> y con total <strong>transparencia</strong>.</p>
-				</div>
-			</div>
-			<br/><br/>
-			<div style="width: 537px; background: #ECF7FB; border: 1px solid #CFDEE4; float: left; margin: 20px 0 0 24px;">
-				<div style="margin: 5px 18px 5px 18px">
-				<img src="images/vision.png" style="float:right; margin: 0 3px 10px 18px;"/>
-				<p style="color:#279CD5;"><b>Visi&oacute;n</b></p>
-	            <p>Ser la empresa <strong>l&iacute;der</strong> en importaciones y prestaciones de servicio aduanales a trav&eacute;s del <strong>cumplimiento</strong> de las <strong>expectativas</strong> de nuestros clientes.</p>
-				</div>
-			</div>
-			<br/><br/>
-			<div style="width: 537px; background: #FCEEE6; border: 1px solid #CFDEE4; float: left; margin: 20px 0 0 24px;">
-				<div style="margin: 5px 18px 5px 18px">
-				<p style="color:#C66738;"><b>Nuestros Valores</b></p>
-	            <p>
-				Lo que nos caracteriza:
+				<p>No importa el dinero... Con <span style="color:#AABD0A; font-weight: bold;">IMPORTA</span> puedes tener el carro de tus sue&ntilde;os.</p>
+				<br>
+				<center><img src="images/contacto.jpg">
+				<br><br>
+				<p><span style="color:#AABD0A; font-weight: bold;">IMPORTA</span> puede ser tu gran aliado en tus importaciones y exporatciones.</p>
+				</center>
+				<br>
+				<h3>Contacto</h3>
+				<p>Direcci&oacute;n:
+				<br>
+				Tel&eacute;fonos: El Salvador, EE.UU.
+				<br>
+				Emails
+				<br>
+				Croquis
+				<br>
 				</p>
-				<br/><br/>
+				<br><br><br>
+<?php 
+
+	if(!isset($_StatsMails['send']))
+
+	{
+
+?>
+				<h3>Formulario de Solicitud</h3>
+				<p>&iquest;Te interes&oacute; algo en espec&iacute;fico? Env&iacute;anos tu solicitud y nos pondremos en contacto contigo para que trabajemos juntos:</p>
 				
-				<ul style="list-style:none">
-				<li>
-				<div id="valores">
-					<img src="images/integridad.jpg" alt="Integridad" class="active" />
-				    <img src="images/calidad.jpg" alt="Calidad" />
-				    <img src="images/profesionalismo.jpg" alt="Profesionalismo" />
-				    <img src="images/excelencia.jpg" alt="Excelencia en el Servicio al Cliente" />
-				    <img src="images/liderazgo.jpg" alt="Liderazgo" />
+				<form action="contactanos.php?wlock=WU9Q" method="post" target="_self">
+				<div class="titletForm"><b>Nombre Completo:</b></div>
+				<input class="txtForm" type="text" name="formNombre" id="formNombre">
+				
+				<div class="titletForm"><b>Direcci&oacute;n:</b></div>
+				<input class="txtForm" type="text" name="formDireccion" id="formDireccion">
+				
+				<div class="titletForm"><b>Tel&eacute;fono:</b></div>
+				<input class="txtForm" type="text" name="formTelefono" id="formTelefono">
+				
+				<div class="titletForm"><b>Tipo de solicitud:</b></div>
+				<select class="txtForm" type="text" name="formSolicitud" id="formSolicitud">
+				<option>Veh&iacute;culos</option>
+				<option>Repuestos</option>
+				<option>Importaciones</option>
+				<option>Tr&aacute;mites Aduanales</option>
+				</select>
+				
+				<div class="titletForm"><b>Descripci&oacute;n:</b></div>
+				<textarea name="formDescripcion" id="formDescripcion" class="txtFormC" cols="50" rows="8"></textarea>
+				
+				<div class="txtFormC">
+				<input type="submit" value="Enviar" class="accept-button" name="enviarRepuesto">
 				</div>
-				</li>
-				</ul>				
-			</div>
-		</div>
-		
-		
-	</div>
+				</form>
+				
+<?php 
+
+	}
+
+	elseif($_StatsMails['send'] == '2')
+
+	{
+		echo '<br><br><br><div align="center"><img src="images/mail_send.jpg" /></div>';
+	}
+
+?>
+				
+				</div>
 	</div>
 	<div style="clear: both;">&nbsp;</div>
 	</div>
 	<!-- end #content -->
 		<div id="sidebar">
 			<ul>
-			
 				<li>
 					<h2>Subastas</h2>
 					<a href="subasta.html"><img src="images/sub.gif"></a>
 				</li>
-			
 				<li>
 					<h2>Importaciones</h2>
 					<p>Todo tipo de importaciones para Hermanos Lejanos.</p>
@@ -185,6 +212,9 @@ $(function() {
 	<!-- end #page -->
 </div>
 <div id="footer-wrapper">
+<div id="correoEnviado" style="display:none" title="Importaciones">
+	<img src="images/mail_send.jpg" />
+</div>
 	<div id="footer">
 		<p>Copyright (c) 2010 IMPORTA. Derechos Reservados.</p>
 	</div>
