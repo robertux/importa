@@ -34,8 +34,15 @@ function fetchListAssoc($sql, $cn, $autoCloseCn = true){
 	return $arr;
 }
 
+function fetchObject($sql, $cn, $autoCloseCn = true){
+	$res = mysql_query($sql, $cn);
+	if($obj = mysql_fetch_object($res))
+		return $obj;
+	else
+		return null;
+}
+
 function executeQuery($sql, $cn){
-	
 	$res = mysql_query($sql, $cn);
 	return mysql_affected_rows();
 }

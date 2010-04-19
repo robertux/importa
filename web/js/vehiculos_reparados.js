@@ -1,6 +1,8 @@
 var PHP_BACKEND_SCRIPT = "php/vehiculos_reparados.php";
 var brandArray = [];
 var editMode = false;
+var uploader;
+var imgSelected = false;
 
 $(document).ready(function(){
 	loadComboAnios();
@@ -11,25 +13,42 @@ $(document).ready(function(){
 	
 	$(".add-button").click(function(){
 		editMode = false;
+		imgSelected = false;
 		$("#addEditDialog").dialog({
 			modal: true,
 			height: 380,
 			width: 480,
-			title: "Agregar nuevo automóvil",
-			open: function(){
-				
-			}
+			title: "Agregar nuevo automóvil"
 		});
+		
+		$("#frmAddEditVehiculo").find(".input-field").attr("value", "");
+		$("#frmAddEditVehiculo").find("select").attr("selectedIndex", 0);
 	});
 	
 	$(".edit-button").click(function(){
 		editMode = true;
+		imgSelected = false;
 		$("#addEditDialog").dialog({
 			modal: true,
 			height: 650,
 			width: 500,
 			title: "Editar automóvil existente"
 		});
+	});
+	
+	uploader = new AjaxUpload("imgUpload", {
+		action: PHP_BACKEND_SCRIPT,
+		data: {action: "upldimg"},
+		autoSubmit: false,
+		onChange: function(file, extension){
+			$("#btnSelImg").val(file);
+			if(file.length > 0)
+				imgSelected = true;
+		},
+		onComplete: function(file, response){
+			if(!response.indexOf("FAIL") >= 0)
+				addVehiculo(response); 
+		} 
 	});  
 });
 
@@ -67,14 +86,41 @@ function closeDialog(){
 	$("#addEditDialog").dialog("close");
 }
 
-function addVehiculo(){
-	$("#frmAddEditVehiculo").ajaxForm(function(data){
-		if(data.indexOf("OK") >= 0){
-			loadMarcas();
-			loadVehiculos();
-		}
-		closeDialog();
+function beforeAddVehiculo(){
+	$("#frmAddEditVehiculo").find(".input-field").attr("disabled", "disabled");
+	
+	if(imgSelected){
+		uploader.submit();
+	}
+	else
+		addVehiculo("");
+	
+}
+
+function addVehiculo(imgName){
+	$.post(PHP_BACKEND_SCRIPT, {	
+			action: "addv", 
+			marca: $("#txtMarca").val(),
+			modelo: $("#txtModelo").val(),
+			anio: $("#cmbAnio").val(),
+			precio: $("#txtPrecio").val(),
+			desc: $("#txtDescripcion").val(),
+			img: imgName
+		},
+		function(data){
+			closeDialog();
+			
+			if(data.indexOf("OK") >= 0){
+				loadMarcas();
+				loadVehiculos();
+				showInfo("Vehículo agregado satisfactoriamente");
+			}
+			else
+				showInfo("Error al agregar vehículo");
+				
 	});
+	
+	$("#frmAddEditVehiculo").find(".input-field").removeAttr("disabled");
 }
 
 function delVehiculo(vid){
@@ -85,7 +131,16 @@ function delVehiculo(vid){
 				if(data.indexOf("OK") >= 0){
 					loadMarcas();
 					loadVehiculos();
+					showInfo("Vehículo eliminado satisfactoriamente");
 				}
+				else
+					showInfo("Error en la eliminación del vehículo");
+
 			});
 	}
+}
+
+function showInfo(text){
+	$("#infoDialog").html(text);
+	$("#infoDialog").dialog({ buttons: { "Ok": function() { $(this).dialog("close"); } } });
 }

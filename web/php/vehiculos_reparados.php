@@ -6,7 +6,9 @@
 		case "listv": listVehiculos(); break;
 		case "listm": listMarcas(); break;
 		case "listt": listTipos(); break;
+		case "addv": addVehiculo(); break;
 		case "delv": delVehiculo(); break;
+		case "upldimg": uploadImage(); break;
 		default: echo("error");
 	}
 	
@@ -28,12 +30,53 @@
 		echo $html;
 	}
 	
+	function addVehiculo(){
+		$marca = $_POST["marca"];
+		$modelo = $_POST["modelo"];
+		$anio = $_POST["anio"];
+		$precio = $_POST["precio"];
+		$desc = $_POST["desc"];
+		$img = $_POST["img"];
+		$marcaObj = getMarca($marca); 
+		
+		if($marcaObj == null){
+			addMarca($marca);
+			$marcaObj = getMarca($marca);
+		}
+		
+		if(strlen($img) == 0)
+		$img = "default.jpg";
+		
+		$cn = getDefaultConnection();
+		$sql = "INSERT INTO vehiculo(tipo, modelo, anio, marca, estado, url_imagen, precio, descripcion)"
+		. " VALUES (" . 0 . ", '" . $modelo . "', " . $anio . ", '" . $marcaObj->id . "', " . 0 . ", '" . $img . "', " . $precio . ", '" . $desc . "')";
+		
+		$rowsAffected = executeQuery($sql, $cn);
+		echo($rowsAffected>0? "OK": "FAIL");
+	}
+	
 	function delVehiculo(){
 		$vid = $_POST["vehiculo"];
 		$cn = getDefaultConnection();
 		$sql = "DELETE FROM vehiculo WHERE id=" . $vid;
 		$rowsAffected = executeQuery($sql, $cn);
 		echo($rowsAffected>0? "OK": "FAIL");
+	}
+	
+	function getMarca($desc){
+		$cn = getDefaultConnection();
+		$sql = "SELECT * FROM marca WHERE nombre = '" . $desc . "'";
+		return fetchObject($sql, $cn);
+	}
+	
+	function addMarca($desc){
+		$cn = getDefaultConnection();
+		$sql = "INSERT INTO marca(nombre) VALUES ('" . $desc . "')";
+		executeQuery($sql, $cn);
+	}
+	
+	function uploadImg(){
+		echo("FAIL");
 	}
 	
 	
@@ -73,7 +116,7 @@
 		$html = "<div id='listaVehiculos'>";
 		foreach($lista as $obj){
 			$html .= "<h3 id='header-" . $obj->id . "' class='listav-header'><a href='#'>" 
-				. $obj->marca_desc . " " . $obj->modelo_desc . " - " . $obj->anio
+				. $obj->marca_desc . " " . ($obj->modelo === "default"? "": $obj->modelo) . " - " . $obj->anio
 				. "</a></h3>";
 				
 			$html .= "<div id='body-" . $obj->id . "' class='listav-body'>";
