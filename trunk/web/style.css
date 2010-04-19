@@ -498,6 +498,13 @@ a.servicios:hover blancoSer
 	height: 20px;
 }
 
+.txtFormC
+{
+	width: 350px;
+	color: #666666;
+	margin: 2px 5px 15px 8px;
+}
+
 .BtnForm
 {
 	margin: 0px 0px 0px 0px;
@@ -506,7 +513,7 @@ a.servicios:hover blancoSer
 }
 
 #vehiculos{
-	width: 700px;
+	width: 600px;
 }
 
 .listav-header h3 a {
@@ -535,7 +542,7 @@ a.servicios:hover blancoSer
 	right: 0px;
 }
 
-.add-button { background: url(images/actions/add.png) no-repeat 3px 5px; position: relative; left: 300px; }
+.add-button { background: url(images/actions/add.png) no-repeat 3px 5px; position: relative;  }
 .edit-button { background: url(images/actions/edit.png) no-repeat 3px 5px; }
 .delete-button { background: url(images/actions/delete.png) no-repeat 3px 5px; }
 .accept-button { background: url(images/actions/accept.png) no-repeat 3px 5px; }

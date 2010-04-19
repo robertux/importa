@@ -8,8 +8,6 @@
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" src="js/floatbox/framebox.js"></script>									
-<link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jqueryui.js"></script>	
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />	
@@ -18,7 +16,7 @@
 	$(function() {
 		$("#tabs").tabs();
 	});
-	</script>
+</script>
 
 
 </head>
@@ -45,7 +43,7 @@
 			<li><a href="servicios.html">Servicios</a></li>
 			<li class="current_page_item"><a href="clientes.html">Clientes</a></li>
 			<li><a href="vehiculos_reparados.html">Autolote</a></li>
-			<li><a href="#">Cont&aacute;ctanos</a></li>
+			<li><a href="contactanos.php">Cont&aacute;ctanos</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -61,39 +59,49 @@
 				<br>
 				<p>Puedes hacer clic en cualquiera de nuestros tipos de clientes para conocer nuestras propuestas:</p>
 				<br>
-				<div id="tabs">
+	<div id="tabs">
 	<ul>
 		<li><a href="#tabs-1">Hermanos Lejanos</a></li>
 		<li><a href="#tabs-2">Personas Individuales</a></li>
 		<li><a href="#tabs-3">Empresas</a></li>
 	</ul>
 	<div id="tabs-1">
-		<p>&iquest;Quieres ayudar a tu familia en <strong>El Salvador</strong>? <br><br>Prov&eacute;eles de un veh&iacute;culo ya que en la actualidad se ha vuelto una gran necesidad. Haz clic aqu&iacute; para conocer nuestras ofertas</p>
+		<p>&iquest;Quieres ayudar a tu familia en <strong>El Salvador</strong>? <br>
+		
+		<center><img src="images/ff.jpg"></center><br>
+		
+		Prov&eacute;eles de un <span style="color:#D84704;">veh&iacute;culo</span> ya que en la actualidad se ha vuelto una gran necesidad. Haz clic <a style="color: #AABD0A; font-weight: bold;" href="vehiculos_reparados.html">aqu&iacute;</a> para conocer nuestras ofertas</p>
 	</div>
 	<div id="tabs-2">
 		<p>	
+		Para t&iacute;...
+		
+		<center><img src="images/hy.jpg"></center><br>
 			<ul>
-			<li>Carros</li>
+			<li style="color:#D84704;">Carros</li>
 			<li>Camionetas 4x4 y 4x2</li>
-			<li>Pick ups 4x4 y 4x2</li>
+			<li style="color:#D84704;">Pick ups 4x4 y 4x2</li>
 			<li>Vans y Mini Vans</li>
-			<li>Lanchas</li>
+			<li style="color:#D84704;">Lanchas</li>
 			</ul>
-			Todas las marcas, modelos, caracter&iacute;sticas (std, aut, etc) que t&uacute; requieras. Haz clic aqu&iacute; para conocer lo que ofrecemos.
+			Todas las marcas, modelos, caracter&iacute;sticas (std, aut, etc.) que t&uacute; requieras. Haz clic <a style="color: #AABD0A; font-weight: bold;" href="vehiculos_reparados.html">aqu&iacute;</a> para conocer lo que ofrecemos.
 		</p>
 	</div>
 	<div id="tabs-3">
-		<p>
+		<p>Para tu negocio...
+		<br>
+		<center><img src="images/vh1.jpg"></center><br>
+		
  			<ul>
-			<li>Buses y busetas de diferentes capacidades</li>
+			<li style="color:#D84704;">Buses y busetas de diferentes capacidades</li>
 			<li>Microbuses cerrados (panel)</li>
-			<li>Veh&iacute;culos refrigerados</li>
+			<li style="color:#D84704;">Veh&iacute;culos refrigerados</li>
 			<li>Montacargas</li>
-			<li>Camiones de volteo</li>
+			<li style="color:#D84704;">Camiones de volteo</li>
 			<li>Pipas</li>
-			<li>Otros</li>
+			<li style="color:#D84704;">Otros</li>
 			</ul>
-			Cont&aacute;ctanos para m&aacute;s informaci&oacute;n.
+			<a style="color: #AABD0A; font-weight: bold;" href="contactanos.php">Cont&aacute;ctanos</a> para m&aacute;s informaci&oacute;n.
 		</p>
 	</div>
 </div>
@@ -138,13 +146,11 @@
 				<li>
 					<h2>Sitios de Inter&eacute;s</h2>
 					<ul>
-						<li><img src="images/icons/bullet_tick.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/imgBusqueda.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 1</a></li>
-						<li><img src="images/icons/imgEnReparacion.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 2</a></li>
-						<li><img src="images/icons/eyes.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Otros Links</a></li>
-						<li><img src="images/icons/flag_checked.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas en L&iacute;nea</a></li>
-						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Clasificados</a></li>
+						<li><img src="images/icons/clientes.png"/>&nbsp;&nbsp;&nbsp;<a href="clientes.html">Clientes</a></li>
+						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="solicitudSubasta.php">Formulario de Subastas</a></li>
+						<li><img src="images/icons/herr.png"/>&nbsp;&nbsp;&nbsp;<a href="repuestos.php">Solicitud de Repuesto</a></li>
+						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="vehiculos_reparados.html">Autolote</a></li>
+						<li><img src="images/icons/star.png"/>&nbsp;&nbsp;&nbsp;<a href="contactanos.php">Contacto</a></li>
 						
 					</ul>
 				</li>

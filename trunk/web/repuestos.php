@@ -46,8 +46,6 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" src="js/floatbox/framebox.js"></script>									
-<link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>	
 <script type="text/javascript" src="js/jqueryui.js"></script>
 <link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />	
@@ -89,7 +87,7 @@
 			<li class="current_page_item"><a href="servicios.html">Servicios</a></li>
 			<li><a href="clientes.html">Clientes</a></li>
 			<li><a href="vehiculos_reparados.html">Autolote</a></li>
-			<li><a href="#">Cont&aacute;ctanos</a></li>
+			<li><a href="contactanos.php">Cont&aacute;ctanos</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -112,29 +110,35 @@
 ?>
 
 				
-				<p>Solicita cualquier tipo de repuesto</p>
-
-				<p>Ingresa la informaci&oacute;n requerida y solic&iacute;tala:</p>
+				<p>Solicita cualquier tipo de repuesto ingresando la informaci&oacute;n requerida y solic&iacute;tala:</p>
 				
 				<form action="repuestos.php?wlock=WU9Q" method="post" target="_self">
 				
 				<div class="titletForm"><b>Tipo de repuesto:</b></div>
 				<input class="txtForm" type="text" name="tipoRepuesto" id="tipoRepuesto">
+				
 				<div class="titletForm"><b>Marca:</b></div>
 				<input class="txtForm" type="text" name="marcaRepuesto" id="marcaRepuesto">
+				
 				<div class="titletForm"><b>Modelo:</b></div>
 				<input class="txtForm" type="text" name="modeloRepuesto" id="modeloRepuesto">
+				
 				<div class="titletForm"><b>A&ntilde;o:</b></div>
 				<input class="txtForm" type="text" name="anioRepuesto" id="anioRepuesto">
+				
 				<div class="titletForm"><b>Chasis:</b></div>
 				<input class="txtForm"  type="text" name="chasisRepuesto" id="chasisRepuesto">
+				
 				<div class="titletForm"><b>Chasis VIN:</b></div>
 				<input class="txtForm" type="text" name="chasisVRepuesto" id="chasisVRepuesto">
+				
 				<div class="titletForm"><b>Comentarios:</b></div>
-				<textarea class="txtForm" name="comentarioRepuesto" id="comentarioRepuesto"  rows="5"></textarea>
-				<div class="titleForm">
+				<textarea name="comentarioRepuesto" id="comentarioRepuesto" class="txtFormC" cols="45" rows="5"></textarea>
+				
+				<div class="txtFormC">
 				<input type="submit" value="Enviar" class="accept-button" name="enviarRepuesto">
 				</div>
+				
 				</form>
 				
 <?php 
@@ -149,7 +153,7 @@
 
 ?>
 
-				<br><br><br>
+				<br>
 				<div class="hlinks">
 					<span >|</span>
 					<a href="servicios.html">Atr&aacute;s</a>
@@ -170,34 +174,18 @@
 				</li>
 				
 				<li>
-					<h2>Repuestos</h2>
-					<p><object name="imFlash" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width= "225" height= "250" >
-<param name="movie" value="swf/anuncioRepuesto.swf" />
-<param name="menu" value="false" />
-<param name="quality" value="high" />
-<param name="wmode" value="transparent" />
-
-<!--[if !IE]> <-->
-<object type="application/x-shockwave-flash" width= "225" height= "250" data="swf/anuncioRepuesto.swf" >
-<param name="menu" value="false" />
-<param name="quality" value="high" />
-<param name="wmode" value="transparent" />
-</object>
-<!--> <![endif]-->
-</object></p>
+					<h2>Subastas</h2>
+					<a href="subasta.html"><img src="images/sub.gif"></a>
 				</li>
 				
 				<li>
 					<h2>Sitios de Inter&eacute;s</h2>
 					<ul>
-						<li><img src="images/icons/bullet_tick.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/imgBusqueda.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 1</a></li>
-						<li><img src="images/icons/imgEnReparacion.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 2</a></li>
-						<li><img src="images/icons/eyes.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Otros Links</a></li>
-						<li><img src="images/icons/flag_checked.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas en L&iacute;nea</a></li>
-						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Clasificados</a></li>
-						
+						<li><img src="images/icons/clientes.png"/>&nbsp;&nbsp;&nbsp;<a href="clientes.html">Clientes</a></li>
+						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="solicitudSubasta.php">Formulario de Subastas</a></li>
+						<li><img src="images/icons/herr.png"/>&nbsp;&nbsp;&nbsp;<a href="repuestos.php">Solicitud de Repuesto</a></li>
+						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="vehiculos_reparados.html">Autolote</a></li>
+						<li><img src="images/icons/star.png"/>&nbsp;&nbsp;&nbsp;<a href="contactanos.php">Contacto</a></li>
 					</ul>
 				</li>
 	

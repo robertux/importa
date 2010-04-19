@@ -7,10 +7,17 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" src="js/floatbox/framebox.js"></script>									
-<link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>		
+<script type="text/javascript" src="js/jqueryui.js"></script>
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+
 
 </head>
 <body>
@@ -38,7 +45,7 @@
 			<li class="current_page_item"><a href="servicios.html">Servicios</a></li>
 			<li><a href="clientes.html">Clientes</a></li>
 			<li><a href="vehiculos_reparados.html">Autolote</a></li>
-			<li><a href="#">Cont&aacute;ctanos</a></li>
+			<li><a href="contactanos.php">Cont&aacute;ctanos</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -51,37 +58,62 @@
 				<div class="entry">
 				
 				<p>&iquest;Quisieras comprar un veh&iacute;culo con impuestos pagados y lo reparas a tu gusto?</p>
-				
-				
-				<p>Participa en las Subastas Semanales que IMPORTA te ofrece.</p>
-
-				<p>Qué debes hacer:</p>
-				
-				<ul>
-				<li>Consulta listado de Vehículos en línea &oacute;</li>
-				<li>Solicita visitar el predio de subastas (Debes solicitarlo con anticipaci&oacute;n y presentarte con tus documentos de identificaci&oacute;n, las visitas serán solamente los d&iacute;as Lunes)</li>
+				<br>
+				<p>Conoce c&oacute;mo hacerlo con <span style="color: #AABD0A; font-weight: bold;">IMPORTA</span>:</p>
+				<br>
+	<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Qu&eacute; debes hacer</a></li>
+		<li><a href="#tabs-2">Personas Naturales</a></li>
+		<li><a href="#tabs-3">Personas Jur&iacute;dicas</a></li>
+	</ul>
+	<div id="tabs-1">
+		<ul>
+				<li style="color:#D84704;">Participar en las subastas semanales de IMPORTA Consulta listado de Veh&iacute;culos en l&iacute;nea &oacute;</li>
+				<li>Consulta listado de Veh&iacute;culos en l&iacute;nea &oacute; en nuestro <a style="color: #AABD0A; font-weight: bold;" href="vehiculos_reparados.html">Autolote</a></li>
+				<li style="color:#D84704;">Solicita visitar el predio de subastas (Debes solicitarlo con anticipaci&oacute;n y presentarte con tus documentos de identificaci&oacute;n, las visitas ser&aacute;n solamente los d&iacute;as Lunes)</li>
 				<li>Participando en las Subastas semanales (Mi&eacute;rcoles)</li>
 				</ul>
+				<br>
+				<p>Revisa los requisitos para participar en las siguientes pesta&ntilde;as:</p>
+
+	</div>
+	<div id="tabs-2">
+		<p>	
+		Los requisitos son: <br>
+		
+		<ul>
+			<li style="color:#D84704;">Documento &Uacute;nico de Identidad (DUI)</li>
+			<li style="color:#D84704;">Documento de Identificaci&oacute;n Tributaria (NIT)</li>
+			<li style="color:#D84704;">Presentar una garant&iacute;a monetaria del 20% sobre el precio base del veh&iacute;culo subastado</li>
+		</ul>
+		</p>
+	</div>
+	<div id="tabs-3">
+		<p>Requisitos:
+		<br>
+				<ul>
+				<li style="color:#D84704;">N&uacute;mero de Identificaci&oacute;n Tributaria de la Empresa (NIT)</li>
+				<li>DUI y NIT del Representante Legal de la Empresa</li>
+				<li style="color:#D84704;">Acreditaci&oacute;n del Representante Legal de la Sociedad</li>
+				<li>N&uacute;mero del Registro de Contribuyente (NCR)</li>
+				<li style="color:#D84704;">Presentar una garant&iacute;a monetaria del 20% sobre el precio base del veh&iacute;culo subastado</li>
+				</p>
+	</div>
+</div>
+<br><br>
+<p>Cont&aacute;ctanos para m&aacute;s informaci&oacute;n en este <a style="color: #AABD0A; font-weight: bold;" href="contactanos.php">link</a>
 				
-
-				<p>Requisitos para participar:</p>
-
-				<ul style="list-style:none;">
-				<li>1- Personas Naturales:</li>
-					<ul>
-					<li>Documento &Uacute;nico de Identidad (DUI)</li>
-					<li>Documento de Identificaci&oacute;n Tributaria (NIT)</li>
-					</ul>
-				<li>2- Personas Jur&iacute;dicas:</li>
-					<ul>
-					<li>Número de Identificaci&oacute;n Tributaria de la Empresa (NIT)</li>
-					<li>DUI y NIT del Representante Legal de la Empresa</li>
-					<li>Acreditaci&oacute;n del Representante Legal de la Sociedad</li>
-					<li>N&uacute;mero del Registro de Contribuyente (NCR)</li>
-					</ul>
-				<li>3- Presentar una garantía monetaria del 20% sobre el precio base del veh&iacute;culo subastado</li>
-				</ul>
+				<br><br> 
+				<div class="hlinks">
+					<span >|</span>
+					<a href="vehiculos.html">Atr&aacute;s</a>
+					<span >|</span>
+					<a href="servicios.html">Servicios</a>
+					<span >|</span>
 				</div>
+		</div>
+				
 	</div>	
 	<div style="clear: both;">&nbsp;</div>
 	</div>
@@ -116,14 +148,11 @@
 				<li>
 					<h2>Sitios de Inter&eacute;s</h2>
 					<ul>
-						<li><img src="images/icons/bullet_tick.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/imgBusqueda.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 1</a></li>
-						<li><img src="images/icons/imgEnReparacion.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 2</a></li>
-						<li><img src="images/icons/eyes.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Otros Links</a></li>
-						<li><img src="images/icons/flag_checked.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas en L&iacute;nea</a></li>
-						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Clasificados</a></li>
-						
+						<li><img src="images/icons/clientes.png"/>&nbsp;&nbsp;&nbsp;<a href="clientes.html">Clientes</a></li>
+						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="solicitudSubasta.php">Formulario de Subastas</a></li>
+						<li><img src="images/icons/herr.png"/>&nbsp;&nbsp;&nbsp;<a href="repuestos.php">Solicitud de Repuesto</a></li>
+						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="vehiculos_reparados.html">Autolote</a></li>
+						<li><img src="images/icons/star.png"/>&nbsp;&nbsp;&nbsp;<a href="contactanos.php">Contacto</a></li>
 					</ul>
 				</li>
 				

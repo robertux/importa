@@ -7,10 +7,17 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" src="js/floatbox/framebox.js"></script>									
-<link rel="stylesheet" href="js/floatbox/floatbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jqueryui.js"></script>
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />		
+
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+
 
 </head>
 <body>
@@ -38,7 +45,7 @@
 			<li class="current_page_item"><a href="servicios.html">Servicios</a></li>
 			<li><a href="clientes.html">Clientes</a></li>
 			<li><a href="vehiculos_reparados.html">Autolote</a></li>
-			<li><a href="#">Cont&aacute;ctanos</a></li>
+			<li><a href="contactanos.php">Cont&aacute;ctanos</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -50,16 +57,50 @@
 				<h2 class="title"><strong>Subastas en L&iacute;nea</strong></h2>
 				<div class="entry">
 				
-				<p>&iquest;Quieres comprar tu veh&iculo en l&iacute;a con las subastas en Estados Unidos?</p>
+				<p>&iquest;Quieres comprar tu veh&iacute;culo en l&iacute;a con las subastas en Estados Unidos?</p>
 				
-				<p> Qué Ventajas te Ofrecemos:</p>
+				<p><span style="color: #AABD0A; font-weight: bold;">IMPORTA</span> ofrece soluciones su servicio de importaci&oacute;n autorizado.</p>
+				<br>
+				<div id="tabs">
 				<ul>
-				<li>Somos Importadores Autorizados</li>
-				<li>La confianza que t&uacute; mismo elijas el vehículo de tu preferencia</li>
-				<li>Contamos con un equipo de personas que pueden ir a los lotes a confirmar las condiciones del veh&iacute;culo para garantizar tu inversi&oacute;n</li>
-				<li>Contamos con licencias en las principales Subastas de Veh&iacute;culos en los Estados Unidos</li>
-				<li>Te asesoramos de los medios por los cuales puedes traer tu veh&iacute;culo de acuerdo a tu presupuesto y urgencia</li>
+					<li><a href="#tabs-1">Qu&eacute; Ofrecemos</a></li>
+					<li><a href="#tabs-2">Qu&eacute; necesitas</a></li>
 				</ul>
+		
+		<div id="tabs-1">
+		
+		<p>&iquest;Qu&eacute; <strong style="color:#D84704;">ventajas</strong> te ofrecemos? 
+		
+		<br><br>
+		
+		<ul>
+				<li style="color:#D84704;">Somos Importadores Autorizados</li>
+				<li>La confianza que t&uacute; mismo elijas el veh&iacute;culo de tu preferencia</li>
+				<li style="color:#D84704;">Contamos con un equipo de personas que pueden ir a los lotes a confirmar las condiciones del veh&iacute;culo para garantizar tu inversi&oacute;n</li>
+				<li>Contamos con licencias en las principales Subastas de Veh&iacute;culos en los Estados Unidos</li>
+				<li style="color:#D84704;">Te asesoramos de los medios por los cuales puedes traer tu veh&iacute;culo de acuerdo a tu presupuesto y urgencia</li>
+		</ul>
+		
+		
+	</div>
+	<div id="tabs-2">
+		<p>	
+		Para obtener un veh&iacute;culo en subasta por medio de <span style="color: #AABD0A; font-weight: bold;">IMPORTA</span>
+		
+		<center><img src="images/sub.jpg"></center><br>
+		Solo accesa al siguiente formulario haciendo clic <a style="color: #AABD0A; font-weight: bold;" href="solicitudSubasta.php">aqu&iacute;</a> para conocer lo que ofrecemos.
+		</p>
+	</div>
+	
+</div>
+				<br><br><br>
+				<div class="hlinks">
+					<span >|</span>
+					<a href="vehiculos.html">Atr&aacute;s</a>
+					<span >|</span>
+					<a href="servicios.html">Servicios</a>
+					<span >|</span>
+				</div>
 				
 				</div>
 	</div>	
@@ -96,14 +137,11 @@
 				<li>
 					<h2>Sitios de Inter&eacute;s</h2>
 					<ul>
-						<li><img src="images/icons/bullet_tick.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/imgBusqueda.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 1</a></li>
-						<li><img src="images/icons/imgEnReparacion.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas Online</a></li>
-						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Sitio 2</a></li>
-						<li><img src="images/icons/eyes.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Otros Links</a></li>
-						<li><img src="images/icons/flag_checked.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Subastas en L&iacute;nea</a></li>
-						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="#">Clasificados</a></li>
-						
+						<li><img src="images/icons/clientes.png"/>&nbsp;&nbsp;&nbsp;<a href="clientes.html">Clientes</a></li>
+						<li><img src="images/icons/cart_full.png"/>&nbsp;&nbsp;&nbsp;<a href="solicitudSubasta.php">Formulario de Subastas</a></li>
+						<li><img src="images/icons/herr.png"/>&nbsp;&nbsp;&nbsp;<a href="repuestos.php">Solicitud de Repuesto</a></li>
+						<li><img src="images/icons/car_red.png"/>&nbsp;&nbsp;&nbsp;<a href="vehiculos_reparados.html">Autolote</a></li>
+						<li><img src="images/icons/star.png"/>&nbsp;&nbsp;&nbsp;<a href="contactanos.php">Contacto</a></li>
 					</ul>
 				</li>
 				
