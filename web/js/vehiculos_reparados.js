@@ -84,6 +84,7 @@ function loadMarcas(){
 
 function closeDialog(){
 	$("#addEditDialog").dialog("close");
+	$("#frmAddEditVehiculo").find(".input-field").removeAttr("disabled");
 }
 
 function beforeAddVehiculo(){
@@ -141,6 +142,5 @@ function delVehiculo(vid){
 }
 
 function showInfo(text){
-	$("#infoDialog").html(text);
-	$("#infoDialog").dialog({ buttons: { "Ok": function() { $(this).dialog("close"); } } });
+	alert(text);
 }

@@ -75,8 +75,22 @@
 		executeQuery($sql, $cn);
 	}
 	
-	function uploadImg(){
-		echo("FAIL");
+	function uploadImage(){
+		$uploadDir = "../images/vehiculos/";
+		$fileName = explode(".", basename($_FILES['userfile']['name']));
+		
+		clearstatcache();
+		$fileSuffix = "";
+		$i = 1;
+		while(file_exists(realpath($uploadDir) . "/" . $fileName[0] . $fileSuffix . "." . $fileName[1])){
+			$fileSuffix = "(" . $i++ . ")";
+		}
+		$uploadFile = realpath($uploadDir) . "/" . $fileName[0] . $fileSuffix . "." . $fileName[1];
+		
+		if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile)) 
+			echo $fileName[0] . $fileSuffix . "." . $fileName[1];
+		else
+			echo "FAIL";
 	}
 	
 	
