@@ -3,6 +3,7 @@ var brandArray = [];
 var editMode = false;
 var uploader;
 var imgSelected = false;
+var currentVehiculo = -1;
 
 $(document).ready(function(){
 	loadComboAnios();
@@ -14,6 +15,10 @@ $(document).ready(function(){
 	$(".add-button").click(function(){
 		editMode = false;
 		imgSelected = false;
+		
+		$("#btnAceptar").unbind();
+		$("#btnAceptar").click(function(){  beforeAddVehiculo()  });
+		
 		$("#addEditDialog").dialog({
 			modal: true,
 			height: 380,
@@ -23,17 +28,6 @@ $(document).ready(function(){
 		
 		$("#frmAddEditVehiculo").find(".input-field").attr("value", "");
 		$("#frmAddEditVehiculo").find("select").attr("selectedIndex", 0);
-	});
-	
-	$(".edit-button").click(function(){
-		editMode = true;
-		imgSelected = false;
-		$("#addEditDialog").dialog({
-			modal: true,
-			height: 650,
-			width: 500,
-			title: "Editar automóvil existente"
-		});
 	});
 	
 	uploader = new AjaxUpload("imgUpload", {
@@ -46,8 +40,12 @@ $(document).ready(function(){
 				imgSelected = true;
 		},
 		onComplete: function(file, response){
-			if(!response.indexOf("FAIL") >= 0)
-				addVehiculo(response); 
+			if(!response.indexOf("FAIL") >= 0){
+				if(editMode)
+					editVehiculo(response);
+				else
+					addVehiculo(response);
+			} 
 		} 
 	});  
 });
@@ -139,6 +137,71 @@ function delVehiculo(vid){
 
 			});
 	}
+}
+
+function showVehiculo(vehiculo){
+	$.post(PHP_BACKEND_SCRIPT,
+		{action: "showv", vid: vehiculo},
+		function(data){
+			editMode = true;
+			imgSelected = false;
+			trama = data.split("|");
+			
+			currentVehiculo = trama[0];
+			$("#txtMarca").val(trama[1]);
+			$("#txtModelo").val(trama[2]);
+			$("#cmbAnio").val(trama[3]);
+			$("#txtPrecio").val(trama[4]);
+			$("#txtDescripcion").val(trama[5]);
+			
+			$("#btnAceptar").unbind();
+			$("#btnAceptar").click(function(){  beforeEditVehiculo()  });
+			
+			$("#addEditDialog").dialog({
+				modal: true,
+				height: 380,
+				width: 480,
+				title: "Editar automóvil existente"
+			});
+		});
+}
+
+function beforeEditVehiculo(){
+	$("#frmAddEditVehiculo").find(".input-field").attr("disabled", "disabled");
+	
+	if(imgSelected){
+		uploader.submit();
+	}
+	else
+		editVehiculo("");
+
+}
+
+function editVehiculo(imgName){
+	$.post(PHP_BACKEND_SCRIPT, {	
+			action: "editv", 
+			vid: currentVehiculo,
+			marca: $("#txtMarca").val(),
+			modelo: $("#txtModelo").val(),
+			anio: $("#cmbAnio").val(),
+			precio: $("#txtPrecio").val(),
+			desc: $("#txtDescripcion").val(),
+			img: imgName
+		},
+		function(data){
+			closeDialog();
+			
+			if(data.indexOf("OK") >= 0){
+				loadMarcas();
+				loadVehiculos();
+				showInfo("Vehículo modificado satisfactoriamente");
+			}
+			else
+				showInfo("Error al modificar vehículo");
+				
+	});
+	
+	$("#frmAddEditVehiculo").find(".input-field").removeAttr("disabled");
 }
 
 function showInfo(text){

@@ -9,6 +9,8 @@
 		case "addv": addVehiculo(); break;
 		case "delv": delVehiculo(); break;
 		case "upldimg": uploadImage(); break;
+		case "showv": getVehiculo(); break;
+		case "editv": editVehiculo(); break;
 		default: echo("error");
 	}
 	
@@ -26,7 +28,6 @@
 	function listMarcas(){
 		$lista = fetchMarcas("where m.id > 0");
 		$html = renderMarcas($lista);
-		//header('Content-type: application/json');
 		echo $html;
 	}
 	
@@ -45,12 +46,41 @@
 		}
 		
 		if(strlen($img) == 0)
-		$img = "default.jpg";
+			$img = "default.jpg";
 		
 		$cn = getDefaultConnection();
 		$sql = "INSERT INTO vehiculo(tipo, modelo, anio, marca, estado, url_imagen, precio, descripcion)"
 		. " VALUES (" . 0 . ", '" . $modelo . "', " . $anio . ", '" . $marcaObj->id . "', " . 0 . ", '" . $img . "', " . $precio . ", '" . $desc . "')";
 		
+		$rowsAffected = executeQuery($sql, $cn);
+		echo($rowsAffected>0? "OK": "FAIL");
+	}
+	
+	function editVehiculo(){
+		$vid = $_POST["vid"];
+		$marca = $_POST["marca"];
+		$modelo = $_POST["modelo"];
+		$anio = $_POST["anio"];
+		$precio = $_POST["precio"];
+		$desc = $_POST["desc"];
+		$img = $_POST["img"];
+		$marcaObj = getMarca($marca); 
+		
+		if($marcaObj == null){
+			addMarca($marca);
+			$marcaObj = getMarca($marca);
+		}
+		
+		if(strlen($img) == 0)
+			$imgSql = "";
+		else
+			$imgSql = ", url_imagen='" . $img . "' ";
+		
+		$cn = getDefaultConnection();
+		$sql = "UPDATE vehiculo SET marca=" . $marcaObj->id . ", modelo='" . $modelo . "', anio=" . $anio . ", precio=" . $precio . ", descripcion='" . $desc . "'" . $imgSql .
+			" WHERE id=" . $vid;
+		
+		echo($sql);
 		$rowsAffected = executeQuery($sql, $cn);
 		echo($rowsAffected>0? "OK": "FAIL");
 	}
@@ -91,6 +121,15 @@
 			echo $fileName[0] . $fileSuffix . "." . $fileName[1];
 		else
 			echo "FAIL";
+	}
+	
+	function getVehiculo(){
+		$vid = $_POST["vid"];
+		$cn = getDefaultConnection();
+		$vehiculos = fetchVehiculos("WHERE v.id = " . $vid);
+		$trama = renderVechiculo($vehiculos[0]);
+		//header('Content-type: application/json');
+		echo($trama);
 	}
 	
 	
@@ -139,7 +178,7 @@
 			$html .= "<div id='footer-" . $obj->id . "' class='listav-footer'>";
 			$html .= "<label class='prizeLabel'>Precio: <span class='prize'>" . $obj->precio . "</span></label>";
 			$html .= "<span class='actions'>";
-			$html .= "<input type='button' class='edit-button' value='editar' />";
+			$html .= "<input type='button' class='edit-button' value='editar' onClick='showVehiculo(" . $obj->id . ")' />";
 			$html .= "<input type='button' class='delete-button' value='eliminar' onClick='delVehiculo(" . $obj->id . ")' />";
 			$html .= "</span>";
 			$html .= "</div>";
@@ -164,5 +203,15 @@
 		$html = implode("|", $nombres);
 		
 		return $html;
+	}
+	
+	function renderVechiculo($vehiculo){
+		$trama = $vehiculo->id . "|" . 
+			$vehiculo->marca_desc . "|" .
+			$vehiculo->modelo . "|" .
+			$vehiculo->anio . "|" .
+			$vehiculo->precio . "|" .
+			$vehiculo->descripcion;
+		return $trama;
 	}
 ?>
