@@ -94,7 +94,7 @@
 				<br>
 				<center><img src="images/contacto.jpg">
 				<br><br>
-				<p><span style="color:#AABD0A; font-weight: bold;">IMPORTA</span> puede ser tu gran aliado en tus importaciones y exporatciones.</p>
+				<p><span style="color:#AABD0A; font-weight: bold;">IMPORTA</span> puede ser tu gran aliado en tus importaciones y exportaciones.</p>
 				</center>
 				<br>
 				<h3>Contacto</h3>
