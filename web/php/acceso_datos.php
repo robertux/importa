@@ -25,9 +25,10 @@ function closeConnection($cn){
 function fetchListAssoc($sql, $cn, $autoCloseCn = true){
 	$arr = array();
 	$res = mysql_query($sql, $cn);
-	while($obj = mysql_fetch_object($res))		
-		$arr[] = $obj;
-	
+	if($res>0){
+		while($obj = mysql_fetch_object($res))		
+			$arr[] = $obj;
+	}
 	if($autoCloseCn)
 		closeConnection($cn);
 		

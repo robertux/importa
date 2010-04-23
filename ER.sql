@@ -2,7 +2,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `importa` ;
 CREATE SCHEMA IF NOT EXISTS `importa` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `importa`;
 
@@ -20,11 +19,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `importa`.`tipo_vehiculo`
+-- Table `importa`.`tipo_articulo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `importa`.`tipo_vehiculo` ;
+DROP TABLE IF EXISTS `importa`.`tipo_articulo` ;
 
-CREATE  TABLE IF NOT EXISTS `importa`.`tipo_vehiculo` (
+CREATE  TABLE IF NOT EXISTS `importa`.`tipo_articulo` (
   `id` INT UNSIGNED NOT NULL ,
   `nombre` VARCHAR(200) NOT NULL ,
   PRIMARY KEY (`id`) )
@@ -32,11 +31,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `importa`.`vehiculo`
+-- Table `importa`.`articulo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `importa`.`vehiculo` ;
+DROP TABLE IF EXISTS `importa`.`articulo` ;
 
-CREATE  TABLE IF NOT EXISTS `importa`.`vehiculo` (
+CREATE  TABLE IF NOT EXISTS `importa`.`articulo` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `tipo` INT UNSIGNED NOT NULL ,
   `modelo` VARCHAR(200) NOT NULL ,
@@ -47,16 +46,16 @@ CREATE  TABLE IF NOT EXISTS `importa`.`vehiculo` (
   `precio` DOUBLE UNSIGNED NOT NULL ,
   `descripcion` TEXT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_vehiculo_marca` (`marca` ASC) ,
-  INDEX `fk_vehiculo_tipo` (`tipo` ASC) ,
-  CONSTRAINT `fk_vehiculo_marca`
+  INDEX `fk_articulo_marca` (`marca` ASC) ,
+  INDEX `fk_articulo_tipo` (`tipo` ASC) ,
+  CONSTRAINT `fk_articulo_marca`
     FOREIGN KEY (`marca` )
     REFERENCES `importa`.`marca` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_vehiculo_tipo`
+  CONSTRAINT `fk_articulo_tipo`
     FOREIGN KEY (`tipo` )
-    REFERENCES `importa`.`tipo_vehiculo` (`id` )
+    REFERENCES `importa`.`tipo_articulo` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -85,20 +84,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `importa`.`compatible_vehiculo_acc`
+-- Table `importa`.`compatible_articulo_acc`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `importa`.`compatible_vehiculo_acc` ;
+DROP TABLE IF EXISTS `importa`.`compatible_articulo_acc` ;
 
-CREATE  TABLE IF NOT EXISTS `importa`.`compatible_vehiculo_acc` (
+CREATE  TABLE IF NOT EXISTS `importa`.`compatible_articulo_acc` (
   `id` INT UNSIGNED NOT NULL ,
-  `idvehiculo` INT UNSIGNED NOT NULL ,
+  `idarticulo` INT UNSIGNED NOT NULL ,
   `idaccesorio` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_compatible_vehiculo_acc` (`idvehiculo` ASC) ,
+  INDEX `fk_compatible_articulo_acc` (`idarticulo` ASC) ,
   INDEX `fk_compatible_accesorio_acc` (`idaccesorio` ASC) ,
-  CONSTRAINT `fk_compatible_vehiculo_acc`
-    FOREIGN KEY (`idvehiculo` )
-    REFERENCES `importa`.`vehiculo` (`id` )
+  CONSTRAINT `fk_compatible_articulo_acc`
+    FOREIGN KEY (`idarticulo` )
+    REFERENCES `importa`.`articulo` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_compatible_accesorio_acc`
@@ -132,20 +131,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `importa`.`compatible_vehiculo_rep`
+-- Table `importa`.`compatible_articulo_rep`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `importa`.`compatible_vehiculo_rep` ;
+DROP TABLE IF EXISTS `importa`.`compatible_articulo_rep` ;
 
-CREATE  TABLE IF NOT EXISTS `importa`.`compatible_vehiculo_rep` (
+CREATE  TABLE IF NOT EXISTS `importa`.`compatible_articulo_rep` (
   `id` INT UNSIGNED NOT NULL ,
-  `idvehiculo` INT UNSIGNED NOT NULL ,
+  `idarticulo` INT UNSIGNED NOT NULL ,
   `idrepuesto` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_compatible_vehiculo_rep` (`idvehiculo` ASC) ,
+  INDEX `fk_compatible_articulo_rep` (`idarticulo` ASC) ,
   INDEX `fk_compatible_repuesto_rep` (`idrepuesto` ASC) ,
-  CONSTRAINT `fk_compatible_vehiculo_rep`
-    FOREIGN KEY (`idvehiculo` )
-    REFERENCES `importa`.`vehiculo` (`id` )
+  CONSTRAINT `fk_compatible_articulo_rep`
+    FOREIGN KEY (`idarticulo` )
+    REFERENCES `importa`.`articulo` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_compatible_repuesto_rep`
