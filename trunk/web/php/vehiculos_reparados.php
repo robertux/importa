@@ -1,16 +1,16 @@
 <?php
-	require_once("acceso_datos.php");	
+	require_once("acceso_datos.php");
 	
 	$action = (isset($_POST["action"])? $_POST["action"]: (isset($_GET["action"])? $_GET["action"]: ""));
 	switch($action){
-		case "listv": listVehiculos(); break;
+		case "listv": listarticulos(); break;
 		case "listm": listMarcas(); break;
 		case "listt": listTipos(); break;
-		case "addv": addVehiculo(); break;
-		case "delv": delVehiculo(); break;
+		case "addv": addarticulo(); break;
+		case "delv": delarticulo(); break;
 		case "upldimg": uploadImage(); break;
-		case "showv": getVehiculo(); break;
-		case "editv": editVehiculo(); break;
+		case "showv": getarticulo(); break;
+		case "editv": editarticulo(); break;
 		default: echo("error");
 	}
 	
@@ -19,9 +19,9 @@
 	
 	/******************************** Main methods ********************************/
 	
-	function listVehiculos(){
-		$lista = fetchVehiculos();
-		$html = renderVehiculos($lista);
+	function listarticulos(){
+		$lista = fetcharticulos("where v.tipo=1");
+		$html = renderarticulos($lista);
 		echo $html;
 	}
 	
@@ -31,7 +31,7 @@
 		echo $html;
 	}
 	
-	function addVehiculo(){
+	function addarticulo(){
 		$marca = $_POST["marca"];
 		$modelo = $_POST["modelo"];
 		$anio = $_POST["anio"];
@@ -49,14 +49,14 @@
 			$img = "default.jpg";
 		
 		$cn = getDefaultConnection();
-		$sql = "INSERT INTO vehiculo(tipo, modelo, anio, marca, estado, url_imagen, precio, descripcion)"
-		. " VALUES (" . 0 . ", '" . $modelo . "', " . $anio . ", '" . $marcaObj->id . "', " . 0 . ", '" . $img . "', " . $precio . ", '" . $desc . "')";
+		$sql = "INSERT INTO articulo(tipo, modelo, anio, marca, estado, url_imagen, precio, descripcion)"
+		. " VALUES (" . 1 . ", '" . $modelo . "', " . $anio . ", '" . $marcaObj->id . "', " . 0 . ", '" . $img . "', " . $precio . ", '" . $desc . "')";
 		
 		$rowsAffected = executeQuery($sql, $cn);
 		echo($rowsAffected>0? "OK": "FAIL");
 	}
 	
-	function editVehiculo(){
+	function editarticulo(){
 		$vid = $_POST["vid"];
 		$marca = $_POST["marca"];
 		$modelo = $_POST["modelo"];
@@ -77,7 +77,7 @@
 			$imgSql = ", url_imagen='" . $img . "' ";
 		
 		$cn = getDefaultConnection();
-		$sql = "UPDATE vehiculo SET marca=" . $marcaObj->id . ", modelo='" . $modelo . "', anio=" . $anio . ", precio=" . $precio . ", descripcion='" . $desc . "'" . $imgSql .
+		$sql = "UPDATE articulo SET marca=" . $marcaObj->id . ", modelo='" . $modelo . "', anio=" . $anio . ", precio=" . $precio . ", descripcion='" . $desc . "'" . $imgSql .
 			" WHERE id=" . $vid;
 		
 		echo($sql);
@@ -85,10 +85,10 @@
 		echo($rowsAffected>0? "OK": "FAIL");
 	}
 	
-	function delVehiculo(){
+	function delarticulo(){
 		$vid = $_POST["vehiculo"];
 		$cn = getDefaultConnection();
-		$sql = "DELETE FROM vehiculo WHERE id=" . $vid;
+		$sql = "DELETE FROM articulo WHERE id=" . $vid;
 		$rowsAffected = executeQuery($sql, $cn);
 		echo($rowsAffected>0? "OK": "FAIL");
 	}
@@ -123,11 +123,11 @@
 			echo "FAIL";
 	}
 	
-	function getVehiculo(){
+	function getarticulo(){
 		$vid = $_POST["vid"];
 		$cn = getDefaultConnection();
-		$vehiculos = fetchVehiculos("WHERE v.id = " . $vid);
-		$trama = renderVechiculo($vehiculos[0]);
+		$articulos = fetcharticulos("WHERE v.id = " . $vid);
+		$trama = renderVechiculo($articulos[0]);
 		//header('Content-type: application/json');
 		echo($trama);
 	}
@@ -135,11 +135,11 @@
 	
 	/******************************** Fetchers ********************************/
 	
-	function fetchVehiculos($condicion=""){
+	function fetcharticulos($condicion=""){
 		$cn = getDefaultConnection();
 		$sql = "SELECT v.id, v.tipo, tv.id AS tipo_id, tv.nombre AS tipo_desc, v.modelo, v.anio, v.marca, m.id AS marca_id, m.nombre AS marca_desc, v.estado, v.url_imagen, v.precio, v.descripcion " .
-			" FROM vehiculo v " .
-			" INNER JOIN tipo_vehiculo tv ON v.tipo  = tv.id " .
+			" FROM articulo v " .
+			" INNER JOIN tipo_articulo tv ON v.tipo  = tv.id " .
 			" INNER JOIN marca m ON v.marca = m.id " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
@@ -148,7 +148,7 @@
 	
 	function fetchTipos($condicion=""){
 		$cn = getDefaultConnection();
-		$sql = "SELECT t.id, t.nombre FROM tipo_vehiculo t " . $condicion;
+		$sql = "SELECT t.id, t.nombre FROM tipo_articulo t " . $condicion;
 		
 		$lista = fetchListAssoc($sql, $cn);
 		return $lista;
@@ -165,10 +165,10 @@
 	/******************************** Renderers ********************************/
 	
 	
-	function renderVehiculos($lista){ 
+	function renderarticulos($lista){ 
 		$html = "<div id='listaVehiculos'>";
 		foreach($lista as $obj){
-			$html .= "<h3 id='header-" . $obj->id . "' class='listav-header'><a href='#'>" 
+			$html .= "<h3 id='header-" . $obj->id . "' class='listav-header' style='font-weight: normal; font-family: Arial, Helvetica;'><a href='#'>" 
 				. $obj->marca_desc . " " . ($obj->modelo === "default"? "": $obj->modelo) . " - " . $obj->anio
 				. "</a></h3>";
 				
@@ -205,13 +205,13 @@
 		return $html;
 	}
 	
-	function renderVechiculo($vehiculo){
-		$trama = $vehiculo->id . "|" . 
-			$vehiculo->marca_desc . "|" .
-			$vehiculo->modelo . "|" .
-			$vehiculo->anio . "|" .
-			$vehiculo->precio . "|" .
-			$vehiculo->descripcion;
+	function renderVechiculo($articulo){
+		$trama = $articulo->id . "|" . 
+			$articulo->marca_desc . "|" .
+			$articulo->modelo . "|" .
+			$articulo->anio . "|" .
+			$articulo->precio . "|" .
+			$articulo->descripcion;
 		return $trama;
 	}
 ?>
