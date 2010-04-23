@@ -549,11 +549,11 @@ a.servicios:hover blancoSer
 .cancel-button { background: url(images/actions/cancel.png) no-repeat 3px 5px; }
 
 .add-button, .edit-button, .delete-button, .accept-button, .cancel-button{
-	background-color: #FFFFFF;
+	background-color: #4A859C;
 	border: 1px solid #AAAAAA;
 	padding: 2px 5px; 
 	margin: 0px 2px;
-	color: #444444;
+	color: #F5F5F5;
 	cursor: pointer;
 	text-indent: 15px;
 	-webkit-border-radius: 4px;
