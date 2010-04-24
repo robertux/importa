@@ -168,7 +168,7 @@
 	function renderarticulos($lista){ 
 		$html = "<div id='listaVehiculos'>";
 		foreach($lista as $obj){
-			$html .= "<h3 id='header-" . $obj->id . "' class='listav-header' style='font-weight: normal; font-family: Arial, Helvetica;'><a href='#'>" 
+			$html .= "<h3 id='header-" . $obj->id . "' class='listav-header' font-family: Arial, Helvetica;'><a href='#'>" 
 				. $obj->marca_desc . " " . ($obj->modelo === "default"? "": $obj->modelo) . " - " . $obj->anio
 				. "</a></h3>";
 				
