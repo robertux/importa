@@ -92,10 +92,10 @@
 	<div id="page-bgbtm">
 		<div id="content">
 			<div class="post">
-				<h2 class="title"><strong>Repuestos</strong></h2>
+				<h2 class="title"><strong>Subastas</strong></h2>
 				<div class="entry">
 				
-				<center><p style="font-weight:bold; font-size:15px; color:#000000;">IMPORTA te ofrece toda clase de respuestos</p></center>
+				<center><p style="font-weight:bold; font-size:15px; color:#000000;">Con IMPORTA puedes participar en nuestras subastas.</p></center>
 				
 <?php 
 
@@ -106,7 +106,7 @@
 ?>
 
 				
-				<p>Solicita cualquier tipo de repuesto ingresando la informaci&oacute;n requerida y solic&iacute;tala:</p>
+				<p>Solo ingresa la informaci&oacute;n solicitada del veh&iacute;culo que te interesa y nos pondremos en contacto contigo:</p>
 				
 				<form action="solicitudSubasta.php?wlock=WU9Q" method="post" target="_self">
 				
