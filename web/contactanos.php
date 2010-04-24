@@ -42,12 +42,19 @@
 <title>IMPORTA... sin l&iacute;mites</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<link href="css/jqueryui.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="js/jqueryui.js"></script>
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />		
 
 <script type="text/javascript">
-  jQuery(document).ready(function() {
+jQuery(document).ready(function() {
     jQuery("#correoEnviado").dialog({
       bgiframe: true, autoOpen: false, height: 200, width:400, modal: true
+    });
+  });
+jQuery(document).ready(function() {
+    jQuery("#croquis").dialog({
+      bgiframe: true, autoOpen: false, height: 250, modal: true
     });
   });
 </script>
@@ -90,7 +97,7 @@
 			<div class="post">
 				<h2 class="title"><strong>Cont&aacute;ctanos</strong></h2>
 				<div class="entry">
-				<p>No importa el dinero... Con <span style="color:#AABD0A; font-weight: bold;">IMPORTA</span> puedes tener el carro de tus sue&ntilde;os.</p>
+				<p>No importa el dinero... Con <span style="color:#AABD0A; font-weight: bold;">IMPORTA</span> puedes tener <span style="color:#D84704; font-weight:bold;">TODO</span> lo que quieras.</p>
 				<br>
 				<center><img src="images/contacto.jpg">
 				<br><br>
@@ -102,9 +109,11 @@
 				<br>
 				Tel&eacute;fonos: El Salvador, EE.UU.
 				<br>
-				Emails
+				Emails <a href="#" onclick="jQuery('#correoEnviado').dialog('open'); return false;">AQU&Iacute;</a>
 				<br>
-				Croquis
+				Croquis. Para verlo haz clic 
+				<a href="#" onclick="jQuery('#croquis').dialog('open'); return false;">AQU&Iacute;</a>
+				
 				<br>
 				</p>
 				<br><br><br>
@@ -214,6 +223,10 @@
 <div id="footer-wrapper">
 <div id="correoEnviado" style="display:none" title="Importaciones">
 	<img src="images/mail_send.jpg" />
+</div>
+
+<div id="croquis" style="display:none" title="Cont&aacute;ctanos">
+				<p>CROQUIS</p>
 </div>
 	<div id="footer">
 		<p>Copyright (c) 2010 IMPORTA. Derechos Reservados.</p>
