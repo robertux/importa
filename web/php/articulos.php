@@ -107,7 +107,7 @@
 	}
 	
 	function uploadImage(){
-		$uploadDir = "../images/vehiculos/";
+		$uploadDir = "../images/articulos/";
 		$fileName = explode(".", basename($_FILES['userfile']['name']));
 		
 		clearstatcache();
@@ -174,7 +174,7 @@
 				. "</a></h3>";
 				
 			$html .= "<div id='body-" . $obj->id . "' class='listav-body'>";
-			$html .= "<img src='images/vehiculos/" . $obj->url_imagen . "' alt='imagen' height='128' width='128'>";
+			$html .= "<img src='images/articulos/" . $obj->url_imagen . "' alt='imagen' height='128' width='128'>";
 			$html .= "<p>" . $obj->descripcion . "</p>";
 			$html .= "<div id='footer-" . $obj->id . "' class='listav-footer'>";
 			$html .= "<label class='prizeLabel'>Precio: <span class='prize'>" . $obj->precio . "</span></label>";
